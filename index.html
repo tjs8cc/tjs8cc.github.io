@@ -13,7 +13,7 @@
   
   
   
-  <meta name="description" content="PhD Candidate at Indiana University">
+  <meta name="description" content="PhD Candidate">
 
   
   <link rel="alternate" hreflang="en-us" href="/">
@@ -75,7 +75,7 @@
   <meta property="og:site_name" content="Tyler Smith">
   <meta property="og:url" content="/">
   <meta property="og:title" content="Tyler Smith">
-  <meta property="og:description" content="PhD Candidate at Indiana University">
+  <meta property="og:description" content="PhD Candidate">
   <meta property="og:locale" content="en-us">
   
   <meta property="og:updated_time" content="2016-04-20T00:00:00-04:00">
@@ -248,7 +248,7 @@
 
       <div class="portrait-title">
         <h2 itemprop="name">Tyler Smith</h2>
-        <h3 itemprop="jobTitle">PhD Candidate at Indiana University</h3>
+        <h3 itemprop="jobTitle">PhD Candidate</h3>
 
         
         
@@ -376,6 +376,13 @@
     <h1>Recent Posts</h1>
     
     
+    <p class="view-all">
+      <a href="/post/">
+        More Posts
+        <i class="fa fa-angle-double-right"></i>
+      </a>
+    </p>
+    
 
   </div>
   <div class="col-xs-12 col-md-8">
@@ -446,10 +453,7 @@
   </h3>
   <div class="article-style" itemprop="articleBody">
     
-    Purpose This post shows some basic R usage, data exploration, and prediction methods.
-Download data from website
-training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.file(training_data_url, train_file, method = &quot;curl&quot;) } test_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/5c9fa979-5a84-45d6-93b9-543d1a0efc41.csv&quot; test_file &lt;- &quot;../../data/test.csv&quot; if(!file.exists(test_file)){ download.file(test_data_url, test_file, method = &quot;curl&quot;) } Looking at the first few rows of data
-training &lt;- read.csv(&quot;../../data/training.csv&quot;, row.names = 1) head(training) ## Months.since.Last.Donation Number.of.Donations ## 619 2 50 ## 664 0 13 ## 441 1 16 ## 160 2 20 ## 358 1 24 ## 335 4 4 ## Total.
+    <p>Example using basic R commands, data exploration, and prediction methods</p>
     
   </div>
   <p class="read-more" itemprop="mainEntityOfPage">
@@ -533,94 +537,6 @@ training &lt;- read.csv(&quot;../../data/training.csv&quot;, row.names = 1) head
   </div>
   <p class="read-more" itemprop="mainEntityOfPage">
     <a href="/post/getting-started/" class="btn btn-primary btn-outline">
-      CONTINUE READING
-    </a>
-  </p>
-</div>
-
-        
-      
-
-      
-
-        
-
-        
-        
-
-        
-        
-          
-      
-          
-      
-          
-      
-
-      
-      
-        
-        
-          
-
-<div class="card-simple" itemscope itemprop="blogPost" itemtype="http://schema.org/BlogPosting">
-  
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    
-    <time datetime="2015-07-23 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
-      Jul 23, 2015
-    </time>
-  </span>
-  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Tyler Smith">
-  </span>
-
-  
-  <span class="middot-divider"></span>
-  <span class="article-reading-time">
-    1 min read
-  </span>
-  
-
-  
-  
-
-  
-  
-  
-  <span class="middot-divider"></span>
-  <span class="article-categories">
-    <i class="fa fa-folder"></i>
-    
-    <a href="/categories/r/">R</a
-    >
-    
-  </span>
-  
-  
-
-  
-
-</div>
-
-
-  
-  
-  <h3 class="article-title" itemprop="headline">
-    <a href="/post/2015-07-23-r-rmarkdown/" itemprop="url">Hello R Markdown</a>
-  </h3>
-  <div class="article-style" itemprop="articleBody">
-    
-    R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.
-    
-  </div>
-  <p class="read-more" itemprop="mainEntityOfPage">
-    <a href="/post/2015-07-23-r-rmarkdown/" class="btn btn-primary btn-outline">
       CONTINUE READING
     </a>
   </p>
