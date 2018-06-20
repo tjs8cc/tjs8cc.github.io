@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Academic</title>
+    <title>Posts on Tyler Smith</title>
     <link>/post/</link>
-    <description>Recent content in Posts on Academic</description>
+    <description>Recent content in Posts on Tyler Smith</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
@@ -11,6 +11,18 @@
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Predicting Blood Donations</title>
+      <link>/post/predicting-blood-donations/</link>
+      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/predicting-blood-donations/</guid>
+      <description>Purpose This post shows some basic R usage, data exploration, and prediction methods.
+Download data from website
+training_data_url &amp;lt;- &amp;quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&amp;quot; train_file &amp;lt;- &amp;quot;../../data/training.csv&amp;quot; if(!file.exists(train_file)){ download.file(training_data_url, train_file, method = &amp;quot;curl&amp;quot;) } test_data_url &amp;lt;- &amp;quot;https://s3.amazonaws.com/drivendata/data/2/public/5c9fa979-5a84-45d6-93b9-543d1a0efc41.csv&amp;quot; test_file &amp;lt;- &amp;quot;../../data/test.csv&amp;quot; if(!file.exists(test_file)){ download.file(test_data_url, test_file, method = &amp;quot;curl&amp;quot;) } Looking at the first few rows of data
+training &amp;lt;- read.csv(&amp;quot;../../data/training.csv&amp;quot;, row.names = 1) head(training) ## Months.since.Last.Donation Number.of.Donations ## 619 2 50 ## 664 0 13 ## 441 1 16 ## 160 2 20 ## 358 1 24 ## 335 4 4 ## Total.</description>
+    </item>
     
     <item>
       <title>Academic: the website designer for Hugo</title>
