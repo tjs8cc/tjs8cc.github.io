@@ -12,11 +12,14 @@
     
     <item>
       <title>Notes on The Elements of Statistical Learning</title>
-      <link>/post/notes-on-elements-of-statistical-learning/</link>
+      <link>/post/notes-on-the-elements-of-statistical-learning/</link>
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/notes-on-elements-of-statistical-learning/</guid>
-      <description></description>
+      <guid>/post/notes-on-the-elements-of-statistical-learning/</guid>
+      <description>&lt;p&gt;Some content&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(cars$speed, cars$dist)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-06-21-notes-on-the-elements-of-statistical-learning_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>

@@ -5,7 +5,7 @@
     
     <url>
     
-      <loc>/post/notes-on-elements-of-statistical-learning/</loc>
+      <loc>/post/notes-on-the-elements-of-statistical-learning/</loc>
       <lastmod>2018-06-21T00:00:00+00:00</lastmod>
     </url>
     
@@ -203,6 +203,16 @@
     
       <loc>/tags/regression/</loc>
       <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/statistics/</loc>
+      <lastmod>2018-06-21T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
