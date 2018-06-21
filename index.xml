@@ -16,10 +16,18 @@
       <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/predicting-blood-donations/</guid>
-      <description>&lt;div id=&#34;purpose&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Purpose&lt;/h1&gt;
-&lt;p&gt;This post shows some basic R usage, data exploration, and prediction methods.&lt;/p&gt;
-&lt;p&gt;Download data from website&lt;/p&gt;
+      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;purpose&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;This post shows some basic R usage, data exploration, and viszualizations methods.
+In a future post I’ll explore some predictive models.&lt;/p&gt;
+&lt;div id=&#34;obtaining-data-in-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Obtaining data in R&lt;/h3&gt;
+&lt;p&gt;R has a useful function called &lt;code&gt;download.file&lt;/code&gt;, which I show here for future
+reference. Using &lt;code&gt;method = curl&lt;/code&gt;, and maybe the &lt;code&gt;extra&lt;/code&gt; option to pass additional
+arguments, I can download data from the DrivenData website&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;training_data_url &amp;lt;- &amp;quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&amp;quot;
 train_file &amp;lt;- &amp;quot;../../data/training.csv&amp;quot;
 if(!file.exists(train_file)){
@@ -31,45 +39,178 @@ test_file &amp;lt;- &amp;quot;../../data/test.csv&amp;quot;
 if(!file.exists(test_file)){
   download.file(test_data_url, test_file, method = &amp;quot;curl&amp;quot;)
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Looking at the first few rows of data&lt;/p&gt;
+&lt;p&gt;Next, to look at the first few rows of data, I run&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;training &amp;lt;- read.csv(&amp;quot;../../data/training.csv&amp;quot;, row.names = 1)
-head(training)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##     Months.since.Last.Donation Number.of.Donations
-## 619                          2                  50
-## 664                          0                  13
-## 441                          1                  16
-## 160                          2                  20
-## 358                          1                  24
-## 335                          4                   4
-##     Total.Volume.Donated..c.c.. Months.since.First.Donation
-## 619                       12500                          98
-## 664                        3250                          28
-## 441                        4000                          35
-## 160                        5000                          45
-## 358                        6000                          77
-## 335                        1000                           4
-##     Made.Donation.in.March.2007
-## 619                           1
-## 664                           1
-## 441                           1
-## 160                           1
-## 358                           0
-## 335                           0&lt;/code&gt;&lt;/pre&gt;
+names(training) &amp;lt;- c(&amp;quot;last&amp;quot;, &amp;quot;number&amp;quot;, &amp;quot;volume&amp;quot;, &amp;quot;first&amp;quot;, &amp;quot;donated07&amp;quot;)
+kable(head(training)) %&amp;gt;%
+  kable_styling(bootstrap_options = c(&amp;quot;striped&amp;quot;, &amp;quot;hover&amp;quot;, &amp;quot;condensed&amp;quot;, &amp;quot;responsive&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed table-responsive&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+last
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+number
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+volume
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+first
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+donated07
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+619
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+50
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+12500
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+98
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+664
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+13
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3250
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+28
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+441
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+16
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+35
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+160
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+20
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+45
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+358
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+24
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+6000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+77
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+335
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;div id=&#34;read.csv-vs-read_csv&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;&lt;code&gt;read.csv&lt;/code&gt; vs &lt;code&gt;read_csv&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;I chose to use &lt;code&gt;read.csv&lt;/code&gt; here since this data set come with row names.&lt;/p&gt;
+&lt;hr /&gt;
 &lt;p&gt;Plot scatter matrix of covariates&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X &amp;lt;- training[1:(ncol(training)-1)]
 y &amp;lt;- training[ncol(training)]
 pairs(training)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-19-predicting-blood-donations_files/figure-html/scatter_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Notice that &lt;code&gt;Number.of.Donations&lt;/code&gt; and &lt;code&gt;Total.Volume.Donated..c.c..&lt;/code&gt; are perfectly correlated. Which means that one of them needs to be dropped in any regression.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training,aes(Number.of.Donations, Months.since.Last.Donation, colour = factor(Made.Donation.in.March.2007))) + geom_point() + theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training,aes(number, last, colour = factor(donated07))) + geom_point() + theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training,aes(factor(Made.Donation.in.March.2007), Months.since.Last.Donation)) + geom_boxplot()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training,aes(factor(donated07), last)) + geom_boxplot()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;
 Some more&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training, aes(Number.of.Donations)) +
-  geom_histogram(binwidth = 1, na.rm = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training, aes(number, fill = factor(donated07))) +
+  geom_histogram(binwidth = 1, na.rm = TRUE) + theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;
 x&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>

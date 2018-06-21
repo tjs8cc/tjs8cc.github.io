@@ -17,10 +17,9 @@
       
     
   
-  <meta name="description" content="Purpose This post shows some basic R usage, data exploration, and prediction methods.
-Download data from website
-training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.file(training_data_url, train_file, method = &quot;curl&quot;) } test_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/5c9fa979-5a84-45d6-93b9-543d1a0efc41.csv&quot; test_file &lt;- &quot;../../data/test.csv&quot; if(!file.exists(test_file)){ download.file(test_data_url, test_file, method = &quot;curl&quot;) } Looking at the first few rows of data
-training &lt;- read.csv(&quot;../../data/training.csv&quot;, row.names = 1) head(training) ## Months.since.Last.Donation Number.of.Donations ## 619 2 50 ## 664 0 13 ## 441 1 16 ## 160 2 20 ## 358 1 24 ## 335 4 4 ## Total.">
+  <meta name="description" content="Purpose This post shows some basic R usage, data exploration, and viszualizations methods. In a future post I’ll explore some predictive models.
+Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
+training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.file(training_data_url, train_file, method = &quot;curl&quot;) } test_data_url &lt;- &quot;https://s3.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/predicting-blood-donations/">
@@ -82,10 +81,9 @@ training &lt;- read.csv(&quot;../../data/training.csv&quot;, row.names = 1) head
   <meta property="og:site_name" content="Tyler Smith">
   <meta property="og:url" content="/post/predicting-blood-donations/">
   <meta property="og:title" content="Predicting Blood Donations | Tyler Smith">
-  <meta property="og:description" content="Purpose This post shows some basic R usage, data exploration, and prediction methods.
-Download data from website
-training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.file(training_data_url, train_file, method = &quot;curl&quot;) } test_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/5c9fa979-5a84-45d6-93b9-543d1a0efc41.csv&quot; test_file &lt;- &quot;../../data/test.csv&quot; if(!file.exists(test_file)){ download.file(test_data_url, test_file, method = &quot;curl&quot;) } Looking at the first few rows of data
-training &lt;- read.csv(&quot;../../data/training.csv&quot;, row.names = 1) head(training) ## Months.since.Last.Donation Number.of.Donations ## 619 2 50 ## 664 0 13 ## 441 1 16 ## 160 2 20 ## 358 1 24 ## 335 4 4 ## Total.">
+  <meta property="og:description" content="Purpose This post shows some basic R usage, data exploration, and viszualizations methods. In a future post I’ll explore some predictive models.
+Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
+training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.file(training_data_url, train_file, method = &quot;curl&quot;) } test_data_url &lt;- &quot;https://s3.">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-06-19T00:00:00&#43;00:00">
@@ -255,7 +253,7 @@ training &lt;- read.csv(&quot;../../data/training.csv&quot;, row.names = 1) head
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 min read
   </span>
   
 
@@ -315,10 +313,18 @@ training &lt;- read.csv(&quot;../../data/training.csv&quot;, row.names = 1) head
 
 
     <div class="article-style" itemprop="articleBody">
-      <div id="purpose" class="section level1">
-<h1>Purpose</h1>
-<p>This post shows some basic R usage, data exploration, and prediction methods.</p>
-<p>Download data from website</p>
+      <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<div id="purpose" class="section level2">
+<h2>Purpose</h2>
+<p>This post shows some basic R usage, data exploration, and viszualizations methods.
+In a future post I’ll explore some predictive models.</p>
+<div id="obtaining-data-in-r" class="section level3">
+<h3>Obtaining data in R</h3>
+<p>R has a useful function called <code>download.file</code>, which I show here for future
+reference. Using <code>method = curl</code>, and maybe the <code>extra</code> option to pass additional
+arguments, I can download data from the DrivenData website</p>
 <pre class="r"><code>training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot;
 train_file &lt;- &quot;../../data/training.csv&quot;
 if(!file.exists(train_file)){
@@ -330,45 +336,178 @@ test_file &lt;- &quot;../../data/test.csv&quot;
 if(!file.exists(test_file)){
   download.file(test_data_url, test_file, method = &quot;curl&quot;)
 }</code></pre>
-<p>Looking at the first few rows of data</p>
+<p>Next, to look at the first few rows of data, I run</p>
 <pre class="r"><code>training &lt;- read.csv(&quot;../../data/training.csv&quot;, row.names = 1)
-head(training)</code></pre>
-<pre><code>##     Months.since.Last.Donation Number.of.Donations
-## 619                          2                  50
-## 664                          0                  13
-## 441                          1                  16
-## 160                          2                  20
-## 358                          1                  24
-## 335                          4                   4
-##     Total.Volume.Donated..c.c.. Months.since.First.Donation
-## 619                       12500                          98
-## 664                        3250                          28
-## 441                        4000                          35
-## 160                        5000                          45
-## 358                        6000                          77
-## 335                        1000                           4
-##     Made.Donation.in.March.2007
-## 619                           1
-## 664                           1
-## 441                           1
-## 160                           1
-## 358                           0
-## 335                           0</code></pre>
+names(training) &lt;- c(&quot;last&quot;, &quot;number&quot;, &quot;volume&quot;, &quot;first&quot;, &quot;donated07&quot;)
+kable(head(training)) %&gt;%
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;))</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+last
+</th>
+<th style="text-align:right;">
+number
+</th>
+<th style="text-align:right;">
+volume
+</th>
+<th style="text-align:right;">
+first
+</th>
+<th style="text-align:right;">
+donated07
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+619
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+12500
+</td>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+664
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+3250
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+441
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+4000
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+160
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+5000
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+358
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+6000
+</td>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+335
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1000
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div id="read.csv-vs-read_csv" class="section level4">
+<h4><code>read.csv</code> vs <code>read_csv</code></h4>
+<p>I chose to use <code>read.csv</code> here since this data set come with row names.</p>
+<hr />
 <p>Plot scatter matrix of covariates</p>
 <pre class="r"><code>X &lt;- training[1:(ncol(training)-1)]
 y &lt;- training[ncol(training)]
 pairs(training)</code></pre>
 <p><img src="/post/2018-06-19-predicting-blood-donations_files/figure-html/scatter_matrix-1.png" width="672" /></p>
 <p>Notice that <code>Number.of.Donations</code> and <code>Total.Volume.Donated..c.c..</code> are perfectly correlated. Which means that one of them needs to be dropped in any regression.</p>
-<pre class="r"><code>ggplot(training,aes(Number.of.Donations, Months.since.Last.Donation, colour = factor(Made.Donation.in.March.2007))) + geom_point() + theme(legend.position = &quot;none&quot;)</code></pre>
+<pre class="r"><code>ggplot(training,aes(number, last, colour = factor(donated07))) + geom_point() + theme(legend.position = &quot;none&quot;)</code></pre>
 <p><img src="/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(training,aes(factor(Made.Donation.in.March.2007), Months.since.Last.Donation)) + geom_boxplot()</code></pre>
+<pre class="r"><code>ggplot(training,aes(factor(donated07), last)) + geom_boxplot()</code></pre>
 <p><img src="/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 Some more</p>
-<pre class="r"><code>ggplot(training, aes(Number.of.Donations)) +
-  geom_histogram(binwidth = 1, na.rm = TRUE)</code></pre>
+<pre class="r"><code>ggplot(training, aes(number, fill = factor(donated07))) +
+  geom_histogram(binwidth = 1, na.rm = TRUE) + theme(legend.position = &quot;none&quot;)</code></pre>
 <p><img src="/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 x</p>
+</div>
+</div>
 </div>
 
     </div>
