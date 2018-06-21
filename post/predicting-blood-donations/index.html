@@ -357,9 +357,18 @@ head(training)</code></pre>
 <p>Plot scatter matrix of covariates</p>
 <pre class="r"><code>X &lt;- training[1:(ncol(training)-1)]
 y &lt;- training[ncol(training)]
-pairs(X)</code></pre>
+pairs(training)</code></pre>
 <p><img src="/post/2018-06-19-predicting-blood-donations_files/figure-html/scatter_matrix-1.png" width="672" /></p>
 <p>Notice that <code>Number.of.Donations</code> and <code>Total.Volume.Donated..c.c..</code> are perfectly correlated. Which means that one of them needs to be dropped in any regression.</p>
+<pre class="r"><code>ggplot(training,aes(Number.of.Donations, Months.since.Last.Donation, colour = factor(Made.Donation.in.March.2007))) + geom_point() + theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(training,aes(factor(Made.Donation.in.March.2007), Months.since.Last.Donation)) + geom_boxplot()</code></pre>
+<p><img src="/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+Some more</p>
+<pre class="r"><code>ggplot(training, aes(Number.of.Donations)) +
+  geom_histogram(binwidth = 1, na.rm = TRUE)</code></pre>
+<p><img src="/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+x</p>
 </div>
 
     </div>
