@@ -23,11 +23,11 @@
     </item>
     
     <item>
-      <title>Predicting Blood Donations</title>
-      <link>/post/predicting-blood-donations/</link>
-      <pubDate>Tue, 19 Jun 2018 00:00:00 +0000</pubDate>
+      <title>Predicting Blood Donations: Part 1</title>
+      <link>/post/predicting-blood-donations-part-1/</link>
+      <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/predicting-blood-donations/</guid>
+      <guid>/post/predicting-blood-donations-part-1/</guid>
       <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
 
@@ -210,17 +210,10 @@ donated07
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X &amp;lt;- training[1:(ncol(training)-1)]
 y &amp;lt;- training[ncol(training)]
 pairs(training)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-06-19-predicting-blood-donations_files/figure-html/scatter_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/scatter_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Notice that &lt;code&gt;Number.of.Donations&lt;/code&gt; and &lt;code&gt;Total.Volume.Donated..c.c..&lt;/code&gt; are perfectly correlated. Which means that one of them needs to be dropped in any regression.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training,aes(number, last, colour = factor(donated07))) + geom_point() + theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training,aes(factor(donated07), last)) + geom_boxplot()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;
-Some more&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training, aes(number, fill = factor(donated07))) +
-  geom_histogram(binwidth = 1, na.rm = TRUE) + theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-06-19-predicting-blood-donations_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;
-x&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
