@@ -204,8 +204,14 @@ donated07
 &lt;hr /&gt;
 &lt;div id=&#34;read.csv-vs-read_csv&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;&lt;code&gt;read.csv&lt;/code&gt; vs &lt;code&gt;read_csv&lt;/code&gt;&lt;/h4&gt;
-&lt;p&gt;I chose to use &lt;code&gt;read.csv&lt;/code&gt; here since this data set come with row names.&lt;/p&gt;
+&lt;p&gt;I chose to use &lt;code&gt;read.csv&lt;/code&gt; here since this data set came with row names. But in
+general, &lt;code&gt;read_csv&lt;/code&gt; loads data faster and reads the data into a &lt;code&gt;tibble&lt;/code&gt;. Whereas,
+&lt;code&gt;read.csv&lt;/code&gt; reads the data into a &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
 &lt;hr /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exploring-the-data-in-r&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Exploring the data in R&lt;/h3&gt;
 &lt;p&gt;Plot scatter matrix of covariates&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X &amp;lt;- training[1:(ncol(training)-1)]
 y &amp;lt;- training[ncol(training)]
@@ -214,7 +220,6 @@ pairs(training)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Notice that &lt;code&gt;Number.of.Donations&lt;/code&gt; and &lt;code&gt;Total.Volume.Donated..c.c..&lt;/code&gt; are perfectly correlated. Which means that one of them needs to be dropped in any regression.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training,aes(number, last, colour = factor(donated07))) + geom_point() + theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
