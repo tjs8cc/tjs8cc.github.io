@@ -484,8 +484,6 @@ y &lt;- training[ncol(training)]
 ggpairs(training, aes(colour=factor(donated07)), columns = 1:(ncol(training)-1), progress = F) </code></pre>
 <p><img src="/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/scatter_matrix-1.png" width="672" /></p>
 <p>Notice that <code>Number.of.Donations</code> and <code>Total.Volume.Donated..c.c..</code> are perfectly correlated. Which means that one of them needs to be dropped in any regression.</p>
-<pre class="r"><code>ggplot(training,aes(number, last, colour = factor(donated07))) + geom_point() + theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 </div>
 
