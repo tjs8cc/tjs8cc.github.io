@@ -215,7 +215,7 @@ general, &lt;code&gt;read_csv&lt;/code&gt; loads data faster and reads the data 
 &lt;p&gt;Plot scatter matrix of covariates&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X &amp;lt;- training[1:(ncol(training)-1)]
 y &amp;lt;- training[ncol(training)]
-pairs(training)&lt;/code&gt;&lt;/pre&gt;
+ggpairs(training, progress = F) &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/scatter_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Notice that &lt;code&gt;Number.of.Donations&lt;/code&gt; and &lt;code&gt;Total.Volume.Donated..c.c..&lt;/code&gt; are perfectly correlated. Which means that one of them needs to be dropped in any regression.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(training,aes(number, last, colour = factor(donated07))) + geom_point() + theme(legend.position = &amp;quot;none&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
