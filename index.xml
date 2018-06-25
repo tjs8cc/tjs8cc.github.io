@@ -24,12 +24,16 @@ These techniques aim to answer problems of the following kind: what’s the
 best approximation to the conditional expectation function &lt;span class=&#34;math inline&#34;&gt;\(f(x) = E[Y|X]\)&lt;/span&gt;?
 Or more generally, what is our best guess for &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; given what we know about
 &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;? Where ‘best’ can be defined in a number of ways, but usually results
-in trying to appoximate the conditional expectation function. A critical
+in trying to approximate the conditional expectation function (CEF). A critical
 assumption made in most of these techniques is that the error is additive,
 so that the basic model is &lt;span class=&#34;math display&#34;&gt;\[ Y = f(x) + \epsilon\]&lt;/span&gt; along with some assumptions
-about how &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; is distributed. I want to replicate some of the results
-from the book (as well as some from their introductory book &lt;em&gt;An Introduction
-to Statistical Learning&lt;/em&gt;) to get a better handle on these techniques.&lt;/p&gt;
+about how &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; is distributed. The assumptions on &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; should not
+be considered an after thought; often the are the most important part of the
+model, especially when you’re interested in causal questions (see &lt;em&gt;Mostly
+Harmless Econometrics&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;I want to summarize and replicate some of the results from their book (as well
+as some from their introductory book &lt;em&gt;An Introduction to Statistical Learning&lt;/em&gt;)
+to get a better handle on these techniques.&lt;/p&gt;
 &lt;div id=&#34;the-bias-variance-tradeoff&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;The Bias-Variance Tradeoff&lt;/h2&gt;
 &lt;p&gt;A theme running throughout &lt;em&gt;The Elements of Statistical Learning&lt;/em&gt; is that any
@@ -39,13 +43,18 @@ chapter. They note that the mean squared error of an estimator is
 &lt;span class=&#34;math display&#34;&gt;\[MSE(\hat{f}(x)) = Var(\hat{f}(x))+ [Bias(\hat{f}(x))]^2 + Var(\epsilon)\]&lt;/span&gt;
 The variance of &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; is the irreducible error. There’s nothing that our
 model can due to reduce this error. The bias and variance of &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt; can
-however be reduced.&lt;/p&gt;
+however be reduced. Roughly, the bias results from misspecifying the CEF and the
+variance of &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt; is due to sampling error, which can be reduced by
+increasing the sample size. So it would seem obvious that we should choose
+correctly specified models to get the best predictions, but what Hastie et.
+al. show is that often times we can do better by intentionally biasing our model
+if the variance is reduced enough in exchange.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;tree-based-methods&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Tree-based Methods&lt;/h2&gt;
 &lt;p&gt;The tree method is very intuitive. We would like to approximate a function &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; by
 partitioning its domain and approximating the function over each region with a
-constant equal to the average value of &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; over each region. Deciding how to
+constant equal to the average value of &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; in each region. Deciding how to
 partition the domain results in different trees.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Carseats = data.frame(Carseats, High)
 tree.carseats = tree(High ~ ShelveLoc + Price, Carseats )

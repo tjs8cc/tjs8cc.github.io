@@ -17,7 +17,7 @@
       
     
   
-  <meta name="description" content="Purpose The Elements of Statistical Learning is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)? Where ‘best’ can be defined in a number of ways, but usually results in trying to appoximate the conditional expectation function.">
+  <meta name="description" content="Purpose The Elements of Statistical Learning is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)? Where ‘best’ can be defined in a number of ways, but usually results in trying to approximate the conditional expectation function (CEF).">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/notes-on-the-elements-of-statistical-learning/">
@@ -79,7 +79,7 @@
   <meta property="og:site_name" content="Tyler Smith">
   <meta property="og:url" content="/post/notes-on-the-elements-of-statistical-learning/">
   <meta property="og:title" content="Notes on The Elements of Statistical Learning | Tyler Smith">
-  <meta property="og:description" content="Purpose The Elements of Statistical Learning is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)? Where ‘best’ can be defined in a number of ways, but usually results in trying to appoximate the conditional expectation function.">
+  <meta property="og:description" content="Purpose The Elements of Statistical Learning is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)? Where ‘best’ can be defined in a number of ways, but usually results in trying to approximate the conditional expectation function (CEF).">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-06-21T00:00:00&#43;00:00">
@@ -230,7 +230,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    3 min read
   </span>
   
 
@@ -298,12 +298,16 @@ These techniques aim to answer problems of the following kind: what’s the
 best approximation to the conditional expectation function <span class="math inline">\(f(x) = E[Y|X]\)</span>?
 Or more generally, what is our best guess for <span class="math inline">\(Y\)</span> given what we know about
 <span class="math inline">\(X\)</span>? Where ‘best’ can be defined in a number of ways, but usually results
-in trying to appoximate the conditional expectation function. A critical
+in trying to approximate the conditional expectation function (CEF). A critical
 assumption made in most of these techniques is that the error is additive,
 so that the basic model is <span class="math display">\[ Y = f(x) + \epsilon\]</span> along with some assumptions
-about how <span class="math inline">\(\epsilon\)</span> is distributed. I want to replicate some of the results
-from the book (as well as some from their introductory book <em>An Introduction
-to Statistical Learning</em>) to get a better handle on these techniques.</p>
+about how <span class="math inline">\(\epsilon\)</span> is distributed. The assumptions on <span class="math inline">\(\epsilon\)</span> should not
+be considered an after thought; often the are the most important part of the
+model, especially when you’re interested in causal questions (see <em>Mostly
+Harmless Econometrics</em>).</p>
+<p>I want to summarize and replicate some of the results from their book (as well
+as some from their introductory book <em>An Introduction to Statistical Learning</em>)
+to get a better handle on these techniques.</p>
 <div id="the-bias-variance-tradeoff" class="section level2">
 <h2>The Bias-Variance Tradeoff</h2>
 <p>A theme running throughout <em>The Elements of Statistical Learning</em> is that any
@@ -313,13 +317,18 @@ chapter. They note that the mean squared error of an estimator is
 <span class="math display">\[MSE(\hat{f}(x)) = Var(\hat{f}(x))+ [Bias(\hat{f}(x))]^2 + Var(\epsilon)\]</span>
 The variance of <span class="math inline">\(\epsilon\)</span> is the irreducible error. There’s nothing that our
 model can due to reduce this error. The bias and variance of <span class="math inline">\(\hat{f}(x)\)</span> can
-however be reduced.</p>
+however be reduced. Roughly, the bias results from misspecifying the CEF and the
+variance of <span class="math inline">\(\hat{f}(x)\)</span> is due to sampling error, which can be reduced by
+increasing the sample size. So it would seem obvious that we should choose
+correctly specified models to get the best predictions, but what Hastie et.
+al. show is that often times we can do better by intentionally biasing our model
+if the variance is reduced enough in exchange.</p>
 </div>
 <div id="tree-based-methods" class="section level2">
 <h2>Tree-based Methods</h2>
 <p>The tree method is very intuitive. We would like to approximate a function <span class="math inline">\(f(x)\)</span> by
 partitioning its domain and approximating the function over each region with a
-constant equal to the average value of <span class="math inline">\(f(x)\)</span> over each region. Deciding how to
+constant equal to the average value of <span class="math inline">\(f(x)\)</span> in each region. Deciding how to
 partition the domain results in different trees.</p>
 <pre class="r"><code>Carseats = data.frame(Carseats, High)
 tree.carseats = tree(High ~ ShelveLoc + Price, Carseats )
