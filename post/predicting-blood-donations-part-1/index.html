@@ -19,7 +19,7 @@
   
   <meta name="description" content="Purpose This post shows some basic R usage, data exploration, and viszualizations methods. In a future post I’ll explore some predictive models.
 Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
-training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.file(training_data_url, train_file, method = &quot;curl&quot;) } test_data_url &lt;- &quot;https://s3.">
+training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/predicting-blood-donations-part-1/">
@@ -83,7 +83,7 @@ training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/
   <meta property="og:title" content="Predicting Blood Donations: Part 1 | Tyler Smith">
   <meta property="og:description" content="Purpose This post shows some basic R usage, data exploration, and viszualizations methods. In a future post I’ll explore some predictive models.
 Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
-training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.file(training_data_url, train_file, method = &quot;curl&quot;) } test_data_url &lt;- &quot;https://s3.">
+training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-06-21T00:00:00&#43;00:00">
@@ -306,13 +306,15 @@ In a future post I’ll explore some predictive models.</p>
 <p>R has a useful function called <code>download.file</code>, which I show here for future
 reference. Using <code>method = curl</code>, and maybe the <code>extra</code> option to pass additional
 arguments, I can download data from the DrivenData website</p>
-<pre class="r"><code>training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot;
+<pre class="r"><code>training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/
+                      9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot;
 train_file &lt;- &quot;../../data/training.csv&quot;
 if(!file.exists(train_file)){
   download.file(training_data_url, train_file, method = &quot;curl&quot;)
 }
 
-test_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/5c9fa979-5a84-45d6-93b9-543d1a0efc41.csv&quot;
+test_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/
+                  5c9fa979-5a84-45d6-93b9-543d1a0efc41.csv&quot;
 test_file &lt;- &quot;../../data/test.csv&quot;
 if(!file.exists(test_file)){
   download.file(test_data_url, test_file, method = &quot;curl&quot;)
@@ -481,9 +483,12 @@ general, <code>read_csv</code> loads data faster and reads the data into a <code
 <p>Plot scatter matrix of covariates</p>
 <pre class="r"><code>X &lt;- training[1:(ncol(training)-1)]
 y &lt;- training[ncol(training)]
-ggpairs(training, aes(colour=factor(donated07)), columns = 1:(ncol(training)-1), progress = F) </code></pre>
+ggpairs(training, aes(colour=factor(donated07)), 
+        diag = list(continuous = wrap(&#39;barDiag&#39;, bins = 20)),
+        columns = 1:(ncol(training)-1), progress = F) </code></pre>
 <p><img src="/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/scatter_matrix-1.png" width="672" /></p>
-<p>Notice that <code>Number.of.Donations</code> and <code>Total.Volume.Donated..c.c..</code> are perfectly correlated. Which means that one of them needs to be dropped in any regression.</p>
+<p>Notice that <code>number</code> and <code>volume</code> are perfectly correlated. Which means that
+one of them needs to be dropped in any regression.</p>
 </div>
 </div>
 
