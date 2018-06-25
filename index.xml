@@ -84,8 +84,8 @@ text(tree.carseats, pretty = 0)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;div id=&#34;purpose&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Purpose&lt;/h2&gt;
-&lt;p&gt;This post shows some basic R usage, data exploration, and viszualizations methods.
-In a future post I’ll explore some predictive models.&lt;/p&gt;
+&lt;p&gt;This post shows some basic R usage, data exploration, and visualizations methods.
+In a future post I’ll explore some quantitative models.&lt;/p&gt;
 &lt;div id=&#34;obtaining-data-in-r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Obtaining data in R&lt;/h3&gt;
 &lt;p&gt;R has a useful function called &lt;code&gt;download.file&lt;/code&gt;, which I show here for future
@@ -258,22 +258,30 @@ donated07
 &lt;div id=&#34;read.csv-vs-read_csv&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;&lt;code&gt;read.csv&lt;/code&gt; vs &lt;code&gt;read_csv&lt;/code&gt;&lt;/h4&gt;
 &lt;p&gt;I chose to use &lt;code&gt;read.csv&lt;/code&gt; here since this data set came with row names. But in
-general, &lt;code&gt;read_csv&lt;/code&gt; loads data faster and reads the data into a &lt;code&gt;tibble&lt;/code&gt;. Whereas,
-&lt;code&gt;read.csv&lt;/code&gt; reads the data into a &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
+general, &lt;code&gt;read_csv&lt;/code&gt; loads data faster and reads the data into a &lt;code&gt;tibble&lt;/code&gt;, and
+&lt;code&gt;tibbles&lt;/code&gt; do not have row names. Whereas, &lt;code&gt;read.csv&lt;/code&gt; reads the data into a
+&lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;exploring-the-data-in-r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Exploring the data in R&lt;/h3&gt;
-&lt;p&gt;Plot scatter matrix of covariates&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;X &amp;lt;- training[1:(ncol(training)-1)]
-y &amp;lt;- training[ncol(training)]
-ggpairs(training, aes(colour=factor(donated07)), 
+&lt;p&gt;As a first pass, lets graph the histograms and scatter plots of the co-variates.
+A quick way to do this is to plot a scatter matrix. I’ll color by the outcome
+variable &lt;code&gt;donated07&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggpairs(training, aes(colour=factor(donated07)), 
         diag = list(continuous = wrap(&amp;#39;barDiag&amp;#39;, bins = 20)),
         columns = 1:(ncol(training)-1), progress = F) &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/scatter_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Notice that &lt;code&gt;number&lt;/code&gt; and &lt;code&gt;volume&lt;/code&gt; are perfectly correlated. Which means that
-one of them needs to be dropped in any regression.&lt;/p&gt;
+one of them needs to be dropped in any regression. The remaining co-variates
+do not look strongly correlated. It also looks like &lt;code&gt;first&lt;/code&gt; might be top-coded
+at 100 months.&lt;/p&gt;
+&lt;p&gt;People who were more likely to donate in 2007 also seemed to donate more in
+general, either by frequency or volume. Their last donation also seemed to be more
+recent. The scatter matrix doesn’t reveal much else to my eye. In part 2, I’ll
+consider quantitative methods to estimate the strength of these qualitative
+observations.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
