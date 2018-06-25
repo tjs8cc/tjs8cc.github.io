@@ -17,8 +17,7 @@
       
     
   
-  <meta name="description" content="Some content
-plot(cars$speed, cars$dist) ">
+  <meta name="description" content="Purpose The Elements of Statistical Learning is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)? Where ‘best’ can be defined in a number of ways, but usually results in trying to appoximate the conditional expectation function.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/notes-on-the-elements-of-statistical-learning/">
@@ -80,8 +79,7 @@ plot(cars$speed, cars$dist) ">
   <meta property="og:site_name" content="Tyler Smith">
   <meta property="og:url" content="/post/notes-on-the-elements-of-statistical-learning/">
   <meta property="og:title" content="Notes on The Elements of Statistical Learning | Tyler Smith">
-  <meta property="og:description" content="Some content
-plot(cars$speed, cars$dist) ">
+  <meta property="og:description" content="Purpose The Elements of Statistical Learning is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)? Where ‘best’ can be defined in a number of ways, but usually results in trying to appoximate the conditional expectation function.">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-06-21T00:00:00&#43;00:00">
@@ -232,7 +230,7 @@ plot(cars$speed, cars$dist) ">
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 min read
   </span>
   
 
@@ -292,9 +290,51 @@ plot(cars$speed, cars$dist) ">
 
 
     <div class="article-style" itemprop="articleBody">
-      <p>Some content</p>
-<pre class="r"><code>plot(cars$speed, cars$dist)</code></pre>
-<p><img src="/post/2018-06-21-notes-on-the-elements-of-statistical-learning_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+      <div id="purpose" class="section level1">
+<h1>Purpose</h1>
+<p><em>The Elements of Statistical Learning</em> is the best resource I’ve
+found for understanding modern statistical and machine learning techniques.
+These techniques aim to answer problems of the following kind: what’s the
+best approximation to the conditional expectation function <span class="math inline">\(f(x) = E[Y|X]\)</span>?
+Or more generally, what is our best guess for <span class="math inline">\(Y\)</span> given what we know about
+<span class="math inline">\(X\)</span>? Where ‘best’ can be defined in a number of ways, but usually results
+in trying to appoximate the conditional expectation function. A critical
+assumption made in most of these techniques is that the error is additive,
+so that the basic model is <span class="math display">\[ Y = f(x) + \epsilon\]</span> along with some assumptions
+about how <span class="math inline">\(\epsilon\)</span> is distributed. I want to replicate some of the results
+from the book (as well as some from their introductory book <em>An Introduction
+to Statistical Learning</em>) to get a better handle on these techniques.</p>
+<div id="the-bias-variance-tradeoff" class="section level2">
+<h2>The Bias-Variance Tradeoff</h2>
+<p>A theme running throughout <em>The Elements of Statistical Learning</em> is that any
+estimation strategy must make a choice between how much bias or variance to
+tolerate. Hastie et. al. have a nice discussion of this in their overview
+chapter. They note that the mean squared error of an estimator is
+<span class="math display">\[MSE(\hat{f}(x)) = E[y-\hat{f}(x)]^2 = Var(\hat{f}(x))+ [Bias(\hat{f}(x))]^2 + Var(\epsilon)\]</span>
+The variance of <span class="math inline">\(\epsilon\)</span> is the irreducible error. There’s nothing that our
+model can due to reduce this error. The bias and variance of <span class="math inline">\(\hat{f}(x)\)</span> can
+be however be reduced.</p>
+</div>
+<div id="tree-based-methods" class="section level2">
+<h2>Tree-based Methods</h2>
+<p>The tree method is very intuitive. We would like to approximate a function <span class="math inline">\(f(x)\)</span> by
+partitioning its domain and approximating the function over each region with a
+constant equal to the average value of <span class="math inline">\(f(x)\)</span> over each region. Deciding how to
+partition the domain results in different trees.</p>
+<pre class="r"><code>Carseats = data.frame(Carseats, High)
+tree.carseats = tree(High ~ ShelveLoc + Price, Carseats )
+summary(tree.carseats)</code></pre>
+<pre><code>## 
+## Classification tree:
+## tree(formula = High ~ ShelveLoc + Price, data = Carseats)
+## Number of terminal nodes:  10 
+## Residual mean deviance:  0.9325 = 363.7 / 390 
+## Misclassification error rate: 0.2325 = 93 / 400</code></pre>
+<pre class="r"><code>plot(tree.carseats, type = c(&quot;uniform&quot;))
+text(tree.carseats, pretty = 0)</code></pre>
+<p><img src="/post/2018-06-21-notes-on-the-elements-of-statistical-learning_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+</div>
 
     </div>
 
@@ -399,6 +439,13 @@ plot(cars$speed, cars$dist) ">
       <script>hljs.initHighlightingOnLoad();</script>
     
 
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-tOav5w1OjvsSJzePRtt2uQPFwBoHt1VZcUq8l8nm5284LEKE9FSJBQryzMBzHxY5P0zRdNqEcpLIRVYFNgu1jw==" crossorigin="anonymous"></script>
     
     
 
