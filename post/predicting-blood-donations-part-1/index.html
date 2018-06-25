@@ -17,7 +17,7 @@
       
     
   
-  <meta name="description" content="Purpose This post shows some basic R usage, data exploration, and visualizations methods. In a future post I’ll explore some quantitative models.
+  <meta name="description" content="Purpose This post shows some basic R usage, data exploration, and visualizations methods. In a future post I’ll explore some quantitative methods.
 Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
 training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.">
 
@@ -81,7 +81,7 @@ training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/
   <meta property="og:site_name" content="Tyler Smith">
   <meta property="og:url" content="/post/predicting-blood-donations-part-1/">
   <meta property="og:title" content="Predicting Blood Donations: Part 1 | Tyler Smith">
-  <meta property="og:description" content="Purpose This post shows some basic R usage, data exploration, and visualizations methods. In a future post I’ll explore some quantitative models.
+  <meta property="og:description" content="Purpose This post shows some basic R usage, data exploration, and visualizations methods. In a future post I’ll explore some quantitative methods.
 Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
 training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.">
   <meta property="og:locale" content="en-us">
@@ -300,7 +300,7 @@ training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/
 <div id="purpose" class="section level2">
 <h2>Purpose</h2>
 <p>This post shows some basic R usage, data exploration, and visualizations methods.
-In a future post I’ll explore some quantitative models.</p>
+In a future post I’ll explore some quantitative methods.</p>
 <div id="obtaining-data-in-r" class="section level3">
 <h3>Obtaining data in R</h3>
 <p>R has a useful function called <code>download.file</code>, which I show here for future
@@ -319,7 +319,7 @@ test_file &lt;- &quot;../../data/test.csv&quot;
 if(!file.exists(test_file)){
   download.file(test_data_url, test_file, method = &quot;curl&quot;)
 }</code></pre>
-<p>Next, to look at the first few rows of data, I run</p>
+<p>Next, to look at the first few rows of data, I run:</p>
 <pre class="r"><code>training &lt;- read.csv(&quot;../../data/training.csv&quot;, row.names = 1)
 names(training) &lt;- c(&quot;last&quot;, &quot;number&quot;, &quot;volume&quot;, &quot;first&quot;, &quot;donated07&quot;)
 kable(head(training)) %&gt;%
@@ -474,25 +474,24 @@ donated07
 <h4><code>read.csv</code> vs <code>read_csv</code></h4>
 <p>I chose to use <code>read.csv</code> here since this data set came with row names. But in
 general, <code>read_csv</code> loads data faster and reads the data into a <code>tibble</code>, and
-<code>tibbles</code> do not have row names. Whereas, <code>read.csv</code> reads the data into a
-<code>data.frame</code>.</p>
+<code>tibbles</code> do not have row names.<code>read.csv</code> reads the data into a <code>data.frame</code>.</p>
 <hr />
 </div>
 </div>
 <div id="exploring-the-data-in-r" class="section level3">
 <h3>Exploring the data in R</h3>
-<p>As a first pass, lets graph the histograms and scatter plots of the co-variates.
+<p>As a first pass, let’s graph the histograms and scatter plots of the co-variates.
 A quick way to do this is to plot a scatter matrix. I’ll color by the outcome
 variable <code>donated07</code>.</p>
 <pre class="r"><code>ggpairs(training, aes(colour=factor(donated07)), 
         diag = list(continuous = wrap(&#39;barDiag&#39;, bins = 20)),
         columns = 1:(ncol(training)-1), progress = F) </code></pre>
 <p><img src="/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/scatter_matrix-1.png" width="672" /></p>
-<p>Notice that <code>number</code> and <code>volume</code> are perfectly correlated. Which means that
+<p>Notice that <code>number</code> and <code>volume</code> are perfectly correlated, which means that
 one of them needs to be dropped in any regression. The remaining co-variates
 do not look strongly correlated. It also looks like <code>first</code> might be top-coded
 at 100 months.</p>
-<p>People who were more likely to donate in 2007 also seemed to donate more in
+<p>People who were more likely to donate in 2007 seemed to donate more in
 general, either by frequency or volume. Their last donation also seemed to be more
 recent. The scatter matrix doesn’t reveal much else to my eye. In part 2, I’ll
 consider quantitative methods to estimate the strength of these qualitative

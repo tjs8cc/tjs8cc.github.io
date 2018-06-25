@@ -27,7 +27,7 @@
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/predicting-blood-donations-part-1/</guid>
-      <description>Purpose This post shows some basic R usage, data exploration, and visualizations methods. In a future post I’ll explore some quantitative models.
+      <description>Purpose This post shows some basic R usage, data exploration, and visualizations methods. In a future post I’ll explore some quantitative methods.
 Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
 training_data_url &amp;lt;- &amp;quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&amp;quot; train_file &amp;lt;- &amp;quot;../../data/training.csv&amp;quot; if(!file.exists(train_file)){ download.</description>
     </item>

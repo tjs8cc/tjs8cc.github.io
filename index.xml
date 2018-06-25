@@ -26,13 +26,13 @@ Or more generally, what is our best guess for &lt;span class=&#34;math inline&#3
 &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;? Where ‘best’ can be defined in a number of ways, but usually results
 in trying to approximate the conditional expectation function (CEF). A critical
 assumption made in most of these techniques is that the error is additive,
-so that the basic model is &lt;span class=&#34;math display&#34;&gt;\[ Y = f(x) + \epsilon\]&lt;/span&gt; along with some assumptions
+so that the general model is &lt;span class=&#34;math display&#34;&gt;\[ Y = f(x) + \epsilon\]&lt;/span&gt; along with some assumptions
 about how &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; is distributed. The assumptions on &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; should not
-be considered an after thought; often the are the most important part of the
+be considered an after thought; often they are the most important part of the
 model, especially when you’re interested in causal questions (see &lt;em&gt;Mostly
 Harmless Econometrics&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;I want to summarize and replicate some of the results from their book (as well
-as some from their introductory book &lt;em&gt;An Introduction to Statistical Learning&lt;/em&gt;)
+as from their introductory book &lt;em&gt;An Introduction to Statistical Learning&lt;/em&gt;)
 to get a better handle on these techniques.&lt;/p&gt;
 &lt;div id=&#34;the-bias-variance-tradeoff&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;The Bias-Variance Tradeoff&lt;/h2&gt;
@@ -42,7 +42,7 @@ tolerate. Hastie et. al. have a nice discussion of this in their overview
 chapter. They note that the mean squared error of an estimator is
 &lt;span class=&#34;math display&#34;&gt;\[MSE(\hat{f}(x)) = Var(\hat{f}(x))+ [Bias(\hat{f}(x))]^2 + Var(\epsilon)\]&lt;/span&gt;
 The variance of &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; is the irreducible error. There’s nothing that our
-model can due to reduce this error. The bias and variance of &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt; can
+model can do to reduce this error. The bias and variance of &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt; can
 however be reduced. Roughly, the bias results from misspecifying the CEF and the
 variance of &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt; is due to sampling error, which can be reduced by
 increasing the sample size. So it would seem obvious that we should choose
@@ -54,7 +54,7 @@ if the variance is reduced enough in exchange.&lt;/p&gt;
 &lt;h2&gt;Tree-based Methods&lt;/h2&gt;
 &lt;p&gt;The tree method is very intuitive. We would like to approximate a function &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; by
 partitioning its domain and approximating the function over each region with a
-constant equal to the average value of &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; in each region. Deciding how to
+constant equal to the average value of &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; in each region. Deciding how to
 partition the domain results in different trees.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Carseats = data.frame(Carseats, High)
 tree.carseats = tree(High ~ ShelveLoc + Price, Carseats )
@@ -85,7 +85,7 @@ text(tree.carseats, pretty = 0)&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;purpose&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Purpose&lt;/h2&gt;
 &lt;p&gt;This post shows some basic R usage, data exploration, and visualizations methods.
-In a future post I’ll explore some quantitative models.&lt;/p&gt;
+In a future post I’ll explore some quantitative methods.&lt;/p&gt;
 &lt;div id=&#34;obtaining-data-in-r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Obtaining data in R&lt;/h3&gt;
 &lt;p&gt;R has a useful function called &lt;code&gt;download.file&lt;/code&gt;, which I show here for future
@@ -104,7 +104,7 @@ test_file &amp;lt;- &amp;quot;../../data/test.csv&amp;quot;
 if(!file.exists(test_file)){
   download.file(test_data_url, test_file, method = &amp;quot;curl&amp;quot;)
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Next, to look at the first few rows of data, I run&lt;/p&gt;
+&lt;p&gt;Next, to look at the first few rows of data, I run:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;training &amp;lt;- read.csv(&amp;quot;../../data/training.csv&amp;quot;, row.names = 1)
 names(training) &amp;lt;- c(&amp;quot;last&amp;quot;, &amp;quot;number&amp;quot;, &amp;quot;volume&amp;quot;, &amp;quot;first&amp;quot;, &amp;quot;donated07&amp;quot;)
 kable(head(training)) %&amp;gt;%
@@ -259,25 +259,24 @@ donated07
 &lt;h4&gt;&lt;code&gt;read.csv&lt;/code&gt; vs &lt;code&gt;read_csv&lt;/code&gt;&lt;/h4&gt;
 &lt;p&gt;I chose to use &lt;code&gt;read.csv&lt;/code&gt; here since this data set came with row names. But in
 general, &lt;code&gt;read_csv&lt;/code&gt; loads data faster and reads the data into a &lt;code&gt;tibble&lt;/code&gt;, and
-&lt;code&gt;tibbles&lt;/code&gt; do not have row names. Whereas, &lt;code&gt;read.csv&lt;/code&gt; reads the data into a
-&lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
+&lt;code&gt;tibbles&lt;/code&gt; do not have row names.&lt;code&gt;read.csv&lt;/code&gt; reads the data into a &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;exploring-the-data-in-r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Exploring the data in R&lt;/h3&gt;
-&lt;p&gt;As a first pass, lets graph the histograms and scatter plots of the co-variates.
+&lt;p&gt;As a first pass, let’s graph the histograms and scatter plots of the co-variates.
 A quick way to do this is to plot a scatter matrix. I’ll color by the outcome
 variable &lt;code&gt;donated07&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggpairs(training, aes(colour=factor(donated07)), 
         diag = list(continuous = wrap(&amp;#39;barDiag&amp;#39;, bins = 20)),
         columns = 1:(ncol(training)-1), progress = F) &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/scatter_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Notice that &lt;code&gt;number&lt;/code&gt; and &lt;code&gt;volume&lt;/code&gt; are perfectly correlated. Which means that
+&lt;p&gt;Notice that &lt;code&gt;number&lt;/code&gt; and &lt;code&gt;volume&lt;/code&gt; are perfectly correlated, which means that
 one of them needs to be dropped in any regression. The remaining co-variates
 do not look strongly correlated. It also looks like &lt;code&gt;first&lt;/code&gt; might be top-coded
 at 100 months.&lt;/p&gt;
-&lt;p&gt;People who were more likely to donate in 2007 also seemed to donate more in
+&lt;p&gt;People who were more likely to donate in 2007 seemed to donate more in
 general, either by frequency or volume. Their last donation also seemed to be more
 recent. The scatter matrix doesn’t reveal much else to my eye. In part 2, I’ll
 consider quantitative methods to estimate the strength of these qualitative
