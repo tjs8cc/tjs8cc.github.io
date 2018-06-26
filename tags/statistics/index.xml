@@ -18,7 +18,7 @@
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/notes-on-the-elements-of-statistical-learning/</guid>
-      <description>Purpose The Elements of Statistical Learning is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)? Where ‘best’ can be defined in a number of ways, but usually results in trying to approximate the conditional expectation function (CEF).</description>
+      <description>Purpose The Bias-Variance Tradeoff Tree-based Methods    Purpose The Elements of Statistical Learning is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)? Where ‘best’ can be defined in a number of ways, but usually results in trying to approximate the conditional expectation function (CEF).</description>
     </item>
     
   </channel>

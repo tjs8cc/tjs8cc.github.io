@@ -116,7 +116,16 @@ provost
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/notes-on-the-elements-of-statistical-learning/</guid>
-      <description>&lt;div id=&#34;purpose&#34; class=&#34;section level1&#34;&gt;
+      <description>&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#purpose&#34;&gt;Purpose&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#the-bias-variance-tradeoff&#34;&gt;The Bias-Variance Tradeoff&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tree-based-methods&#34;&gt;Tree-based Methods&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;purpose&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Purpose&lt;/h1&gt;
 &lt;p&gt;&lt;em&gt;The Elements of Statistical Learning&lt;/em&gt; is the best resource I’ve
 found for understanding modern statistical and machine learning techniques.
