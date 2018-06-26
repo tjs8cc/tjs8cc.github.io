@@ -13,6 +13,17 @@
     
     
     <item>
+      <title>Measuring Measure for Measure</title>
+      <link>/post/measuring-measure-for-measure/</link>
+      <pubDate>Mon, 25 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/measuring-measure-for-measure/</guid>
+      <description>Purpose This is a work in progress, but I’d like to post a summary and my thought on Shakespeare’s Measure for Measure and then use it to perform some basic Natural Language Processing (NLP)
+Note: if I end up do a sentiment analysis, the sentiment libraries I’m aware of would not really be appropriate for early modern English
+Overview   </description>
+    </item>
+    
+    <item>
       <title>Notes on The Elements of Statistical Learning</title>
       <link>/post/notes-on-the-elements-of-statistical-learning/</link>
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
@@ -27,32 +38,9 @@
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/predicting-blood-donations-part-1/</guid>
-      <description>Purpose This post shows some basic R usage, data exploration, and visualizations methods. In a future post I’ll explore some quantitative methods.
+      <description>Purpose This post shows some basic R usage, data exploration, and visualization methods. In a future post I’ll explore some quantitative methods.
 Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
 training_data_url &amp;lt;- &amp;quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&amp;quot; train_file &amp;lt;- &amp;quot;../../data/training.csv&amp;quot; if(!file.exists(train_file)){ download.</description>
-    </item>
-    
-    <item>
-      <title>Academic: the website designer for Hugo</title>
-      <link>/post/getting-started/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 -0400</pubDate>
-      
-      <guid>/post/getting-started/</guid>
-      <description>Academic is a framework to help you create a beautiful website quickly. Perfect for personal sites, blogs, or business/project sites. Check out the latest demo of what you&amp;rsquo;ll get in less than 10 minutes. Then head on over to the Quick Start guide or take a look at the Release Notes.
-
-Key features:
- Easily manage various content including homepage, blog posts, publications, talks, and projects Extensible via color themes and widgets/plugins Write in Markdown for easy formatting and code highlighting, with LaTeX for mathematical expressions Social/academic network linking, Google Analytics, and Disqus comments Responsive and mobile friendly Simple and refreshing one page design Multilingual and easy to customize  Color Themes Academic is available in different color themes and font themes.</description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
     </item>
     
   </channel>

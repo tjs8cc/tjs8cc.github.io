@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shakespeare on Tyler Smith</title>
+    <link>/tags/shakespeare/</link>
+    <description>Recent content in Shakespeare on Tyler Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Mon, 25 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/shakespeare/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Measuring Measure for Measure</title>
+      <link>/post/measuring-measure-for-measure/</link>
+      <pubDate>Mon, 25 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/measuring-measure-for-measure/</guid>
+      <description>Purpose This is a work in progress, but I’d like to post a summary and my thought on Shakespeare’s Measure for Measure and then use it to perform some basic Natural Language Processing (NLP)
+Note: if I end up do a sentiment analysis, the sentiment libraries I’m aware of would not really be appropriate for early modern English
+Overview   </description>
+    </item>
+    
+  </channel>
+</rss>
