@@ -118,10 +118,9 @@ provost
       <guid>/post/notes-on-the-elements-of-statistical-learning/</guid>
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#purpose&#34;&gt;Purpose&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#purpose&#34;&gt;Purpose&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#the-bias-variance-tradeoff&#34;&gt;The Bias-Variance Tradeoff&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#tree-based-methods&#34;&gt;Tree-based Methods&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -143,8 +142,9 @@ Harmless Econometrics&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;I want to summarize and replicate some of the results from their book (as well
 as from their introductory book &lt;em&gt;An Introduction to Statistical Learning&lt;/em&gt;)
 to get a better handle on these techniques.&lt;/p&gt;
-&lt;div id=&#34;the-bias-variance-tradeoff&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;The Bias-Variance Tradeoff&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-bias-variance-tradeoff&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The Bias-Variance Tradeoff&lt;/h1&gt;
 &lt;p&gt;A theme running throughout &lt;em&gt;The Elements of Statistical Learning&lt;/em&gt; is that any
 estimation strategy must make a choice between how much bias or variance to
 tolerate. Hastie et. al. have a nice discussion of this in their overview
@@ -159,8 +159,8 @@ correctly specified models to get the best predictions, but what Hastie et.
 al. show is that often times we can do better by intentionally biasing our model
 if the variance is reduced enough in exchange.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;tree-based-methods&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Tree-based Methods&lt;/h2&gt;
+&lt;div id=&#34;tree-based-methods&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Tree-based Methods&lt;/h1&gt;
 &lt;p&gt;The tree method is very intuitive. We would like to approximate a function &lt;span class=&#34;math inline&#34;&gt;\(f(x)\)&lt;/span&gt; by
 partitioning its domain and approximating the function over each region with a
 constant equal to the average value of &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; in each region. Deciding how to
@@ -177,7 +177,6 @@ summary(tree.carseats)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(tree.carseats, type = c(&amp;quot;uniform&amp;quot;))
 text(tree.carseats, pretty = 0)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-21-notes-on-the-elements-of-statistical-learning_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>
