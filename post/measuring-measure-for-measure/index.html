@@ -17,9 +17,9 @@
       
     
   
-  <meta name="description" content="Purpose This is a work in progress, but I’d like to post a summary and my thought on Shakespeare’s Measure for Measure and then use it to perform some basic Natural Language Processing (NLP)
-Note: if I end up do a sentiment analysis, the sentiment libraries I’m aware of would not really be appropriate for early modern English
-Overview   ">
+  <meta name="description" content="Purpose This is a work in progress, but I’d like to post a summary and my thoughts on Shakespeare’s Measure for Measure and then use it to perform some basic Natural Language Processing (NLP)
+Note: if I end up doing a sentiment analysis, the sentiment libraries I’m aware of would not really be appropriate for early modern English.
+Overview  Word Frequencies Load Measure for Measure from the Gutenberg Project:">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/measuring-measure-for-measure/">
@@ -81,9 +81,9 @@ Overview   ">
   <meta property="og:site_name" content="Tyler Smith">
   <meta property="og:url" content="/post/measuring-measure-for-measure/">
   <meta property="og:title" content="Measuring Measure for Measure | Tyler Smith">
-  <meta property="og:description" content="Purpose This is a work in progress, but I’d like to post a summary and my thought on Shakespeare’s Measure for Measure and then use it to perform some basic Natural Language Processing (NLP)
-Note: if I end up do a sentiment analysis, the sentiment libraries I’m aware of would not really be appropriate for early modern English
-Overview   ">
+  <meta property="og:description" content="Purpose This is a work in progress, but I’d like to post a summary and my thoughts on Shakespeare’s Measure for Measure and then use it to perform some basic Natural Language Processing (NLP)
+Note: if I end up doing a sentiment analysis, the sentiment libraries I’m aware of would not really be appropriate for early modern English.
+Overview  Word Frequencies Load Measure for Measure from the Gutenberg Project:">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-06-25T00:00:00&#43;00:00">
@@ -294,16 +294,95 @@ Overview   ">
 
 
     <div class="article-style" itemprop="articleBody">
-      <div id="purpose" class="section level1">
+      <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<div id="purpose" class="section level1">
 <h1>Purpose</h1>
 <p>This is a work in progress, but I’d like to post a summary
-and my thought on Shakespeare’s <em>Measure for Measure</em> and then
+and my thoughts on Shakespeare’s <em>Measure for Measure</em> and then
 use it to perform some basic Natural Language Processing (NLP)</p>
-<p>Note: if I end up do a sentiment analysis, the sentiment libraries
+<p>Note: if I end up doing a sentiment analysis, the sentiment libraries
 I’m aware of would not really be appropriate for early modern
-English</p>
+English.</p>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
+</div>
+<div id="word-frequencies" class="section level2">
+<h2>Word Frequencies</h2>
+<p>Load <em>Measure for Measure</em> from the Gutenberg Project:</p>
+<pre class="r"><code>mm &lt;- gutenberg_download(1126)</code></pre>
+<p>Tokenize</p>
+<pre class="r"><code>tidy_mm &lt;- mm %&gt;%
+  unnest_tokens(word, text) %&gt;%
+  anti_join(stop_words)</code></pre>
+<p>count</p>
+<pre class="r"><code>mm_count &lt;- tidy_mm %&gt;%
+              count(word, sort = TRUE)
+kable(head(mm_count)) %&gt;%
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;))</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+word
+</th>
+<th style="text-align:right;">
+n
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+duke
+</td>
+<td style="text-align:right;">
+261
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+angelo
+</td>
+<td style="text-align:right;">
+168
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+isabella
+</td>
+<td style="text-align:right;">
+159
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sir
+</td>
+<td style="text-align:right;">
+135
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lucio
+</td>
+<td style="text-align:right;">
+132
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+provost
+</td>
+<td style="text-align:right;">
+116
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 

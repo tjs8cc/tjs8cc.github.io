@@ -16,16 +16,95 @@
       <pubDate>Mon, 25 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/measuring-measure-for-measure/</guid>
-      <description>&lt;div id=&#34;purpose&#34; class=&#34;section level1&#34;&gt;
+      <description>&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;div id=&#34;purpose&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Purpose&lt;/h1&gt;
 &lt;p&gt;This is a work in progress, but I’d like to post a summary
-and my thought on Shakespeare’s &lt;em&gt;Measure for Measure&lt;/em&gt; and then
+and my thoughts on Shakespeare’s &lt;em&gt;Measure for Measure&lt;/em&gt; and then
 use it to perform some basic Natural Language Processing (NLP)&lt;/p&gt;
-&lt;p&gt;Note: if I end up do a sentiment analysis, the sentiment libraries
+&lt;p&gt;Note: if I end up doing a sentiment analysis, the sentiment libraries
 I’m aware of would not really be appropriate for early modern
-English&lt;/p&gt;
+English.&lt;/p&gt;
 &lt;div id=&#34;overview&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Overview&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;word-frequencies&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Word Frequencies&lt;/h2&gt;
+&lt;p&gt;Load &lt;em&gt;Measure for Measure&lt;/em&gt; from the Gutenberg Project:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mm &amp;lt;- gutenberg_download(1126)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tokenize&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tidy_mm &amp;lt;- mm %&amp;gt;%
+  unnest_tokens(word, text) %&amp;gt;%
+  anti_join(stop_words)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;count&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mm_count &amp;lt;- tidy_mm %&amp;gt;%
+              count(word, sort = TRUE)
+kable(head(mm_count)) %&amp;gt;%
+  kable_styling(bootstrap_options = c(&amp;quot;striped&amp;quot;, &amp;quot;hover&amp;quot;, &amp;quot;condensed&amp;quot;, &amp;quot;responsive&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed table-responsive&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+word
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+n
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+duke
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+261
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+angelo
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+168
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+isabella
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+159
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+sir
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+135
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+lucio
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+132
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+provost
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+116
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

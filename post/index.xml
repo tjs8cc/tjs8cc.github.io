@@ -18,9 +18,9 @@
       <pubDate>Mon, 25 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/measuring-measure-for-measure/</guid>
-      <description>Purpose This is a work in progress, but I’d like to post a summary and my thought on Shakespeare’s Measure for Measure and then use it to perform some basic Natural Language Processing (NLP)
-Note: if I end up do a sentiment analysis, the sentiment libraries I’m aware of would not really be appropriate for early modern English
-Overview   </description>
+      <description>Purpose This is a work in progress, but I’d like to post a summary and my thoughts on Shakespeare’s Measure for Measure and then use it to perform some basic Natural Language Processing (NLP)
+Note: if I end up doing a sentiment analysis, the sentiment libraries I’m aware of would not really be appropriate for early modern English.
+Overview  Word Frequencies Load Measure for Measure from the Gutenberg Project:</description>
     </item>
     
     <item>
