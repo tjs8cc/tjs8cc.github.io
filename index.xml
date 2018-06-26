@@ -126,19 +126,19 @@ provost
 
 &lt;div id=&#34;purpose&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Purpose&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;The Elements of Statistical Learning&lt;/em&gt; is the best resource I’ve
-found for understanding modern statistical and machine learning techniques.
-These techniques aim to answer problems of the following kind: what’s the
-best approximation to the conditional expectation function &lt;span class=&#34;math inline&#34;&gt;\(f(x) = E[Y|X]\)&lt;/span&gt;?
-Or more generally, what is our best guess for &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; given what we know about
-&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;? Where ‘best’ can be defined in a number of ways, but usually results
-in trying to approximate the conditional expectation function (CEF). A critical
-assumption made in most of these techniques is that the error is additive,
-so that the general model is &lt;span class=&#34;math display&#34;&gt;\[ Y = f(x) + \epsilon\]&lt;/span&gt; along with some assumptions
-about how &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; is distributed. The assumptions on &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; should not
-be considered an after thought; often they are the most important part of the
-model, especially when you’re interested in causal questions (see &lt;em&gt;Mostly
-Harmless Econometrics&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The Elements of Statistical Learning&lt;/em&gt; by Hastie et. al. is the best resource
+I’ve found for understanding modern statistical and machine learning
+techniques. These techniques aim to answer problems of the following kind:
+what’s the best approximation to the conditional expectation function
+&lt;span class=&#34;math inline&#34;&gt;\(f(x) = E[Y|X]\)&lt;/span&gt;? Or more generally, what is our best guess for &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; given what
+we know about &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;? Where ‘best’ can be defined in a number of ways, but
+usually results in trying to approximate the conditional expectation function
+(CEF). A critical assumption made in most of these techniques is that the
+error is additive, so that the general model is &lt;span class=&#34;math display&#34;&gt;\[ Y = f(x) + \epsilon\]&lt;/span&gt; along
+with some assumptions about how &lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; is distributed. The assumptions on
+&lt;span class=&#34;math inline&#34;&gt;\(\epsilon\)&lt;/span&gt; should not be considered an after thought; often they are the most
+important part of the model, especially when you’re interested in causal
+questions (see &lt;em&gt;Mostly Harmless Econometrics&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;I want to summarize and replicate some of the results from their book (as well
 as from their introductory book &lt;em&gt;An Introduction to Statistical Learning&lt;/em&gt;)
 to get a better handle on these techniques.&lt;/p&gt;

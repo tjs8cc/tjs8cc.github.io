@@ -17,7 +17,7 @@
       
     
   
-  <meta name="description" content="Purpose The Bias-Variance Tradeoff Tree-based Methods   Purpose The Elements of Statistical Learning is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)? Where ‘best’ can be defined in a number of ways, but usually results in trying to approximate the conditional expectation function (CEF).">
+  <meta name="description" content="Purpose The Bias-Variance Tradeoff Tree-based Methods   Purpose The Elements of Statistical Learning by Hastie et. al. is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)?">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/notes-on-the-elements-of-statistical-learning/">
@@ -79,7 +79,7 @@
   <meta property="og:site_name" content="Tyler Smith">
   <meta property="og:url" content="/post/notes-on-the-elements-of-statistical-learning/">
   <meta property="og:title" content="Notes on The Elements of Statistical Learning | Tyler Smith">
-  <meta property="og:description" content="Purpose The Bias-Variance Tradeoff Tree-based Methods   Purpose The Elements of Statistical Learning is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)? Where ‘best’ can be defined in a number of ways, but usually results in trying to approximate the conditional expectation function (CEF).">
+  <meta property="og:description" content="Purpose The Bias-Variance Tradeoff Tree-based Methods   Purpose The Elements of Statistical Learning by Hastie et. al. is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)?">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-06-21T00:00:00&#43;00:00">
@@ -300,19 +300,19 @@
 
 <div id="purpose" class="section level1">
 <h1>Purpose</h1>
-<p><em>The Elements of Statistical Learning</em> is the best resource I’ve
-found for understanding modern statistical and machine learning techniques.
-These techniques aim to answer problems of the following kind: what’s the
-best approximation to the conditional expectation function <span class="math inline">\(f(x) = E[Y|X]\)</span>?
-Or more generally, what is our best guess for <span class="math inline">\(Y\)</span> given what we know about
-<span class="math inline">\(X\)</span>? Where ‘best’ can be defined in a number of ways, but usually results
-in trying to approximate the conditional expectation function (CEF). A critical
-assumption made in most of these techniques is that the error is additive,
-so that the general model is <span class="math display">\[ Y = f(x) + \epsilon\]</span> along with some assumptions
-about how <span class="math inline">\(\epsilon\)</span> is distributed. The assumptions on <span class="math inline">\(\epsilon\)</span> should not
-be considered an after thought; often they are the most important part of the
-model, especially when you’re interested in causal questions (see <em>Mostly
-Harmless Econometrics</em>).</p>
+<p><em>The Elements of Statistical Learning</em> by Hastie et. al. is the best resource
+I’ve found for understanding modern statistical and machine learning
+techniques. These techniques aim to answer problems of the following kind:
+what’s the best approximation to the conditional expectation function
+<span class="math inline">\(f(x) = E[Y|X]\)</span>? Or more generally, what is our best guess for <span class="math inline">\(Y\)</span> given what
+we know about <span class="math inline">\(X\)</span>? Where ‘best’ can be defined in a number of ways, but
+usually results in trying to approximate the conditional expectation function
+(CEF). A critical assumption made in most of these techniques is that the
+error is additive, so that the general model is <span class="math display">\[ Y = f(x) + \epsilon\]</span> along
+with some assumptions about how <span class="math inline">\(\epsilon\)</span> is distributed. The assumptions on
+<span class="math inline">\(\epsilon\)</span> should not be considered an after thought; often they are the most
+important part of the model, especially when you’re interested in causal
+questions (see <em>Mostly Harmless Econometrics</em>).</p>
 <p>I want to summarize and replicate some of the results from their book (as well
 as from their introductory book <em>An Introduction to Statistical Learning</em>)
 to get a better handle on these techniques.</p>
