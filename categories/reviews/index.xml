@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Thu, 28 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 29 Jun 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/reviews/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,11 +15,22 @@
     <item>
       <title>Innovation at Universities</title>
       <link>/post/innovation-at-universities/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/innovation-at-universities/</guid>
       <description>Who should have the rights to innovations created at a university: professors or the university? A natural answer would be the professors; they were the ones who came up with the idea in the first place. But that’s not how it works in the US.
 In the US, professors have rights to about a third of the income from patents and ventures started at universities. This arrangement is motivated by the fact that universities are a crucial partner in innovation.</description>
+    </item>
+    
+    <item>
+      <title>Measuring Measure for Measure</title>
+      <link>/post/measuring-measure-for-measure/</link>
+      <pubDate>Mon, 25 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/measuring-measure-for-measure/</guid>
+      <description>Purpose This is a work in progress, but I’d like to post a summary and my thoughts on Shakespeare’s Measure for Measure and then use it to perform some basic Natural Language Processing (NLP)
+Note: if I end up doing a sentiment analysis, the sentiment libraries I’m aware of would not really be appropriate for early modern English.
+Overview  Word Frequencies Load Measure for Measure from the Gutenberg Project:</description>
     </item>
     
   </channel>

@@ -13,17 +13,17 @@
     <item>
       <title>Innovation at Universities</title>
       <link>/post/innovation-at-universities/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/innovation-at-universities/</guid>
       <description>&lt;p&gt;Who should have the rights to innovations created at a university:
 professors or the university? A natural answer would be the professors;
 they were the ones who came up with the idea in the first place. But
 that’s not how it works in the US.&lt;/p&gt;
-&lt;p&gt;In the US, professors have rights to about a third of the income from patents
-and ventures started at universities. This arrangement is motivated by the
-fact that universities are a crucial partner in innovation. Universities
-supply the basic resources and environment needed to incubate
+&lt;p&gt;In the US, professors have rights to about a third of the income from
+patents and ventures started at universities. This arrangement is motivated
+by the fact that universities are a crucial partner in innovation.
+Universities supply the basic resources and environment needed to incubate
 risky ideas before it is clear they are viable commercial ventures. Those
 resources are costly. If universities aren’t compensated enough, they might
 not provide enough support for professors to bring their ideas to fruition.&lt;/p&gt;
@@ -44,13 +44,13 @@ university start-ups and patents declined as well. While the authors perform
 a more detailed quantitative analysis in their paper, namely a fixed-effects
 regression model, you can still see a sharp contrast between university and
 non-university start-ups in the graph below.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-06-28-innovation-at-universities_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-06-29-innovation-at-universities_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Both university and non-university start-ups decline in 2003, the year that
 “professor’s privilege” ended, but the university start-up decline is
 sharper and fails to recover. Although not as dramatic a difference as
 start-ups, the total number of university patents declines more sharply after
 2003 than non-university patents.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-06-28-innovation-at-universities_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-06-29-innovation-at-universities_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The authors find this general pattern to hold under a number of different
 assumptions. To supplement their quantitative findings, they also conducted
 a survey of university inventors. The survey indicated that university
@@ -58,10 +58,11 @@ inventors had a largely negative view of the reforms. Some respondents felt
 that the university’s ownership share did not reflect its contribution to
 commercializing an idea. To give a representative quote, one respondent said:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The university contributed little, but was entitled to a substantial income
-share.&lt;/p&gt;
+&lt;p&gt;The university contributed little, but was entitled to a substantial
+income share.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;You can see a summary of the respondents’ views in the table below.&lt;/p&gt;
+&lt;p&gt;You can see a summary of the respondents’ views in the table below.
+The authors caution that the response rate was only 22.3%&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
@@ -89,9 +90,8 @@ share.&lt;/p&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;The authors caution that the response rate was only 22.3%&lt;/p&gt;
-&lt;p&gt;Overall, the authors’ findings suggest that the investment that researchers put
-in to commercializing innovative ideas are more important than what
+&lt;p&gt;Overall, the authors’ findings suggest that the investment that researchers
+put in to commercializing innovative ideas are more important than what
 universities bring to a new venture. But, these findings are limited to
 Norway. Locating the right balance between a university’s interests and a
 researcher’s interests in order to encourage new technologies and companies
@@ -482,33 +482,6 @@ observations.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Deep Learning</title>
-      <link>/project/deep-learning/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
-      
-      <guid>/project/deep-learning/</guid>
-      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
-
-&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
-
-&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
-
-&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
-
-&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>External Project</title>
-      <link>/project/example-external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
-      
-      <guid>/project/example-external-project/</guid>
-      <description></description>
     </item>
     
   </channel>
