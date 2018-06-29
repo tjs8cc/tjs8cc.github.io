@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Review on Tyler Smith</title>
+    <link>/categories/review/</link>
+    <description>Recent content in Review on Tyler Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Thu, 28 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/review/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Innovation at Universities</title>
+      <link>/post/innovation-at-universities/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/innovation-at-universities/</guid>
+      <description>Who should have the rights to innovations created at a university: professors or the university? A natural answer would be the professors; they were the ones who came up with the idea in the first place! Well, that’s not how it works in the US. In the US, professors have rights to about a third of the income from patents and ventures started at universities. This arrangement is motivated by the fact that universities are a crucial partner in innovation; universities supply the basic research, resources, and environment needed to incubate risky ideas before it’s clear they are viable commercial ventures.</description>
+    </item>
+    
+  </channel>
+</rss>
