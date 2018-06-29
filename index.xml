@@ -18,36 +18,38 @@
       <guid>/post/innovation-at-universities/</guid>
       <description>&lt;p&gt;Who should have the rights to innovations created at a university:
 professors or the university? A natural answer would be the professors;
-they were the ones who came up with the idea in the first place. But
-that’s not how it works in the US.&lt;/p&gt;
-&lt;p&gt;In the US, professors have rights to about a third of the income from
+they came up with the idea in the first place. But that’s not how it works
+in the US.&lt;/p&gt;
+&lt;p&gt;In the US, professors have rights to roughly a third of the income from
 patents and ventures started at universities. This arrangement is motivated
 by the fact that universities are a crucial partner in innovation.
 Universities supply the basic resources and environment needed to incubate
 risky ideas before it is clear they are viable commercial ventures. Those
 resources are costly. If universities aren’t compensated enough, they might
 not provide enough support for professors to bring their ideas to fruition.&lt;/p&gt;
-&lt;p&gt;In 1980 the US passed the Bayh-Dole act with the hope that providing more
+&lt;p&gt;In 1980 the US passed the Bayh-Dole Act with the hope that providing more
 compensation to universities would encourage more innovation. This
-eventually inspired several European countries to do the same. In 2003
+eventually inspired several European countries to do the same. In 2003,
 Norway ended a policy known as “professor’s privilege” that
 gave professors full rights to new business ventures and intellectual
-property they created, and adopted a US-style policy that transferred
-two-thirds of these rights to the university. The economists Hans K.
-Hvide and Benjamin F. Jones took advantage of this event to observe
-the effects of this new US-style policy in their paper
-&lt;em&gt;University Innovation and the Professor’s Privilege&lt;/em&gt;.&lt;/p&gt;
+property they created. Instead, Norway adopted a US-style policy that
+transferred two-thirds of these rights to the university. Economists Hans K.
+Hvide and Benjamin F. Jones observed the effects of this new US-style
+policy in their paper &lt;a href=&#34;https://www.aeaweb.org/articles?id=10.1257/aer.20160284&#34;&gt;&lt;em&gt;University Innovation and the Professor’s
+Privilege&lt;/em&gt;&lt;/a&gt;,
+published in the July 2018 issue of the AER.&lt;/p&gt;
 &lt;p&gt;Hvide and Jones found that not only did the policy fail to encourage
-innovation, both entrepreneurship and patenting rates by university researchers
-were cut in half after the reform. Furthermore, measures of quality for
-university start-ups and patents declined as well. While the authors perform
-a more detailed quantitative analysis in their paper, namely a fixed-effects
-regression model, you can still see a sharp contrast between university and
-non-university start-ups in the graph below.&lt;/p&gt;
+innovation; both entrepreneurship and patenting rates by university
+researchers were cut in half after the reform. Furthermore, measures of
+quality for university start-ups and patents declined as well. While the
+authors perform a more detailed quantitative analysis in their paper,
+specifically a differences-in-differences regression model, you can still
+see a sharp contrast between university and non-university start-ups in
+the graph below.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-29-innovation-at-universities_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Both university and non-university start-ups decline in 2003, the year that
 “professor’s privilege” ended, but the university start-up decline is
-sharper and fails to recover. Although not as dramatic a difference as
+sharper and fails to recover. Although not as dramatic of a difference as
 start-ups, the total number of university patents declines more sharply after
 2003 than non-university patents.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-06-29-innovation-at-universities_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
@@ -58,11 +60,11 @@ inventors had a largely negative view of the reforms. Some respondents felt
 that the university’s ownership share did not reflect its contribution to
 commercializing an idea. To give a representative quote, one respondent said:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The university contributed little, but was entitled to a substantial
-income share.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The university contributed little, but was entitled to a substantial
+income share.&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;You can see a summary of the respondents’ views in the table below.
-The authors caution that the response rate was only 22.3%&lt;/p&gt;
+&lt;p&gt;You can see a summary of the respondents’ views of the reform in the table
+below. The authors caution that the response rate was only 22.3%.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class=&#34;header&#34;&gt;
@@ -92,11 +94,11 @@ The authors caution that the response rate was only 22.3%&lt;/p&gt;
 &lt;/table&gt;
 &lt;p&gt;Overall, the authors’ findings suggest that the investment that researchers
 put in to commercializing innovative ideas are more important than what
-universities bring to a new venture. But, these findings are limited to
+universities bring to a new venture. But these findings are limited to
 Norway. Locating the right balance between a university’s interests and a
 researcher’s interests in order to encourage new technologies and companies
 is ultimately an empirical problem. Circumstances might vary widely from
-country to country or university to university.&lt;/p&gt;
+country to country or from university to university.&lt;/p&gt;
 </description>
     </item>
     
