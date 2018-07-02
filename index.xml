@@ -211,7 +211,9 @@ provost
       <description>&lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#purpose&#34;&gt;Purpose&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#the-bias-variance-tradeoff&#34;&gt;The Bias-Variance Tradeoff&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#the-bias-variance-tradeoff&#34;&gt;The Bias-Variance Tradeoff&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#note-statistics-vs-econometrics&#34;&gt;Note: Statistics vs Econometrics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#tree-based-methods&#34;&gt;Tree-based Methods&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -248,8 +250,25 @@ however be reduced. Roughly, the bias results from misspecifying the CEF and the
 variance of &lt;span class=&#34;math inline&#34;&gt;\(\hat{f}(x)\)&lt;/span&gt; is due to sampling error, which can be reduced by
 increasing the sample size. So it would seem obvious that we should choose
 correctly specified models to get the best predictions, but what Hastie et.
-al. show is that often times we can do better by intentionally biasing our model
-if the variance is reduced enough in exchange.&lt;/p&gt;
+al. show is that often times we can do better by intentionally biasing our
+model if the variance is reduced enough in exchange.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;div id=&#34;note-statistics-vs-econometrics&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Note: Statistics vs Econometrics&lt;/h3&gt;
+&lt;p&gt;Econometrics places a lot of emphasis on obtaining unbiased and consitent
+estimators (see Introduction to Econometrics by Stock and Watson).
+That doesn’t seem to be the case in statistics. I think this is due to
+different interests: prediction vs causality. It’s certainly more common
+to hear econometricians say they are more interested in causality. In
+the linear regression model &lt;span class=&#34;math display&#34;&gt;\[y = \beta x + \epsilon\]&lt;/span&gt; an economist
+wants the best guess for &lt;span class=&#34;math inline&#34;&gt;\(\beta\)&lt;/span&gt;, which would tell us what &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt; would be
+if we changed &lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;. More generally, an economist want the best guess for
+&lt;span class=&#34;math inline&#34;&gt;\(f(x+\delta)-f(x)\)&lt;/span&gt;. In contrast, a statistician wants the best guess
+for &lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;. Although, the distinction doesn’t seem that significant. Maybe a
+better way of describing the difference is to say that economists care
+more about what we don’t know, i.e. what’s in the error term.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;tree-based-methods&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;Tree-based Methods&lt;/h1&gt;
@@ -284,13 +303,14 @@ text(tree.carseats, pretty = 0)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;div id=&#34;purpose&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Purpose&lt;/h2&gt;
-&lt;p&gt;This post shows some basic R usage, data exploration, and visualization methods.
-In a future post I’ll explore some quantitative methods.&lt;/p&gt;
+&lt;p&gt;This post shows some basic R usage, data exploration, and visualization
+methods. In a future post I’ll explore some quantitative methods.&lt;/p&gt;
 &lt;div id=&#34;obtaining-data-in-r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Obtaining data in R&lt;/h3&gt;
 &lt;p&gt;R has a useful function called &lt;code&gt;download.file&lt;/code&gt;, which I show here for future
-reference. Using &lt;code&gt;method = curl&lt;/code&gt;, and maybe the &lt;code&gt;extra&lt;/code&gt; option to pass additional
-arguments, I can download data from the DrivenData website&lt;/p&gt;
+reference. Using the option &lt;code&gt;method = curl&lt;/code&gt;, and maybe the &lt;code&gt;extra&lt;/code&gt; option
+to pass additional arguments, I can download data from the DrivenData
+website.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;training_data_url &amp;lt;- &amp;quot;https://s3.amazonaws.com/drivendata/data/2/public/
                       9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&amp;quot;
 train_file &amp;lt;- &amp;quot;../../data/training.csv&amp;quot;
@@ -304,9 +324,68 @@ test_file &amp;lt;- &amp;quot;../../data/test.csv&amp;quot;
 if(!file.exists(test_file)){
   download.file(test_data_url, test_file, method = &amp;quot;curl&amp;quot;)
 }&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Next, to look at the first few rows of data, I run:&lt;/p&gt;
+&lt;p&gt;This is pretty small data set with only 5 variable: 4 independent
+variables and 1 binary dependent variable.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;training &amp;lt;- read.csv(&amp;quot;../../data/training.csv&amp;quot;, row.names = 1)
-names(training) &amp;lt;- c(&amp;quot;last&amp;quot;, &amp;quot;number&amp;quot;, &amp;quot;volume&amp;quot;, &amp;quot;first&amp;quot;, &amp;quot;donated07&amp;quot;)
+kable(data.frame(Names = c(&amp;quot;last&amp;quot;, &amp;quot;number&amp;quot;, &amp;quot;volume&amp;quot;, &amp;quot;first&amp;quot;, &amp;quot;donated07&amp;quot;),
+                 Description = names(training))) %&amp;gt;%
+  kable_styling(bootstrap_options = c(&amp;quot;striped&amp;quot;, &amp;quot;hover&amp;quot;, &amp;quot;condensed&amp;quot;, &amp;quot;responsive&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed table-responsive&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Names
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Description
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+last
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Months.since.Last.Donation
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+number
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Number.of.Donations
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+volume
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Total.Volume.Donated..c.c..
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+first
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Months.since.First.Donation
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+donated07
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Made.Donation.in.March.2007
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Next, to look at the first few rows of data, I run:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;names(training) &amp;lt;- c(&amp;quot;last&amp;quot;, &amp;quot;number&amp;quot;, &amp;quot;volume&amp;quot;, &amp;quot;first&amp;quot;, &amp;quot;donated07&amp;quot;)
 kable(head(training)) %&amp;gt;%
   kable_styling(bootstrap_options = c(&amp;quot;striped&amp;quot;, &amp;quot;hover&amp;quot;, &amp;quot;condensed&amp;quot;, &amp;quot;responsive&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;table class=&#34;table table-striped table-hover table-condensed table-responsive&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
@@ -457,30 +536,278 @@ donated07
 &lt;hr /&gt;
 &lt;div id=&#34;read.csv-vs-read_csv&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;&lt;code&gt;read.csv&lt;/code&gt; vs &lt;code&gt;read_csv&lt;/code&gt;&lt;/h4&gt;
-&lt;p&gt;I chose to use &lt;code&gt;read.csv&lt;/code&gt; here since this data set came with row names. But in
-general, &lt;code&gt;read_csv&lt;/code&gt; loads data faster and reads the data into a &lt;code&gt;tibble&lt;/code&gt;, and
-&lt;code&gt;tibbles&lt;/code&gt; do not have row names.&lt;code&gt;read.csv&lt;/code&gt; reads the data into a &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I chose to use &lt;code&gt;read.csv&lt;/code&gt; here since this data set came with row names. But
+in general, &lt;code&gt;read_csv&lt;/code&gt; loads data faster and reads the data into a &lt;code&gt;tibble&lt;/code&gt;,
+and &lt;code&gt;tibbles&lt;/code&gt; do not have row names.&lt;code&gt;read.csv&lt;/code&gt; reads the data into a
+&lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
 &lt;hr /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;exploring-the-data-in-r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Exploring the data in R&lt;/h3&gt;
-&lt;p&gt;As a first pass, let’s graph the histograms and scatter plots of the co-variates.
+&lt;p&gt;First lets check the summary statistics and correlations with outcome
+variable:&lt;/p&gt;
+&lt;!-- write a custome function for this --&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cor_row &amp;lt;- c(&amp;quot;Corr.&amp;quot;, round(cor(training$donated07, training), 4))
+training %&amp;gt;%
+  summary() %&amp;gt;%
+  tidy() %&amp;gt;%
+  mutate(Freq = as.character(Freq)) %&amp;gt;%
+  separate(Freq, c(&amp;quot;statistic&amp;quot;, &amp;quot;value&amp;quot;), &amp;quot;:&amp;quot;) %&amp;gt;%
+  select(-one_of(&amp;quot;Var1&amp;quot;)) %&amp;gt;%
+  rename(variable = Var2) %&amp;gt;%
+  spread(variable, value) %&amp;gt;%
+  rbind(cor_row) %&amp;gt;%
+  kable() %&amp;gt;%
+  kable_styling(bootstrap_options = c(&amp;quot;striped&amp;quot;, &amp;quot;hover&amp;quot;, &amp;quot;condensed&amp;quot;, &amp;quot;responsive&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table table-striped table-hover table-condensed table-responsive&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+statistic
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+last
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+number
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+volume
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+first
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+donated07
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1st Qu.
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2.000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2.000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+500
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+16.00
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.0000
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+3rd Qu.
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+14.000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7.000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1750
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+49.25
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.0000
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Max.
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+74.000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+50.000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+12500
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+98.00
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1.0000
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Mean
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+9.439
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+5.427
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1357
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+34.05
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.2396
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Median
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+7.000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+4.000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+28.00
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.0000
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Min.
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1.000
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+250
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2.00
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.0000
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Corr.
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+-0.2612
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.2206
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+0.2206
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+-0.0198
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Next, let’s graph the histograms and scatter plots of the co-variates.
 A quick way to do this is to plot a scatter matrix. I’ll color by the outcome
 variable &lt;code&gt;donated07&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggpairs(training, aes(colour=factor(donated07)), 
         diag = list(continuous = wrap(&amp;#39;barDiag&amp;#39;, bins = 20)),
         columns = 1:(ncol(training)-1), progress = F) &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/scatter_matrix-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Notice that &lt;code&gt;number&lt;/code&gt; and &lt;code&gt;volume&lt;/code&gt; are perfectly correlated, which means that
 one of them needs to be dropped in any regression. The remaining co-variates
 do not look strongly correlated. It also looks like &lt;code&gt;first&lt;/code&gt; might be top-coded
 at 100 months.&lt;/p&gt;
 &lt;p&gt;People who were more likely to donate in 2007 seemed to donate more in
-general, either by frequency or volume. Their last donation also seemed to be more
-recent. The scatter matrix doesn’t reveal much else to my eye. In part 2, I’ll
-consider quantitative methods to estimate the strength of these qualitative
-observations.&lt;/p&gt;
+general, either by frequency or volume. Their last donation also seemed to
+be more recent. The scatter matrix doesn’t reveal much else to my eye. In
+part 2, I’ll consider quantitative methods to estimate the strength of
+these qualitative observations.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;div id=&#34;note-data-pre-processing&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Note: data pre-processing&lt;/h3&gt;
+&lt;p&gt;To remove duplicate rows, we can use the &lt;code&gt;unique&lt;/code&gt; or &lt;code&gt;distinct&lt;/code&gt;
+functions. &lt;code&gt;unique&lt;/code&gt; returns all the unique rows of a data frame.
+&lt;code&gt;distinct&lt;/code&gt; is an optimized version of &lt;code&gt;unique&lt;/code&gt; from the &lt;code&gt;dplyr&lt;/code&gt;
+package. &lt;code&gt;distnct&lt;/code&gt; can also drop duplicate values based on
+any number of columns. Or to return the duplicated rows we could
+use &lt;code&gt;duplicated&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;training[duplicated(training), ]&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;p&gt;It’s easy to forget that row names aren’t considered when checking for
+duplicates. So, in this case, we would want to include an &lt;code&gt;id&lt;/code&gt; column and
+then remove any duplcates. This is also a point in favor of using tibbles.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Removing missing values is simple in R too. We can use &lt;code&gt;complete.cases&lt;/code&gt; or
+&lt;code&gt;na.omit&lt;/code&gt;. &lt;code&gt;na.omit&lt;/code&gt; returns a data frame without any rows containing
+&lt;code&gt;NA&lt;/code&gt;. And &lt;code&gt;complete.cases&lt;/code&gt; returns the indices of rows without &lt;code&gt;NA&lt;/code&gt;, so
+it can be used to return rows with &lt;code&gt;NA&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;training[!complete.cases(training),]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] last      number    volume    first     donated07
+## &amp;lt;0 rows&amp;gt; (or 0-length row.names)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Clearly, the &lt;code&gt;training&lt;/code&gt; data set in this example doesn’t contain any missing
+values.&lt;/p&gt;
+&lt;p&gt;Finally, it’s a good idea to check for any impossible values. Writing a
+custom function for a data set is a good way to document any changes you’ve
+made. For example, we know that every variable in this data set must be
+non-negative and &lt;code&gt;first &amp;gt;= last&lt;/code&gt;. So we could write the following function
+to remove any rows that violate these conditions:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;clean &amp;lt;- function(x) {
+  if (!is.data.frame(x)) stop(&amp;#39;x must be a data.frame.&amp;#39;)
+  x_cleaned &amp;lt;- x %&amp;gt;%
+    filter(first &amp;gt;= last) %&amp;gt;%
+    filter_all(any_vars(. &amp;gt;= 0))
+  return(x_cleaned)
+}
+training_cleaned &amp;lt;- clean(training)
+sum(!training_cleaned==training)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can see that all of the observations satisfy the conditions
+we put in &lt;code&gt;clean&lt;/code&gt;.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;!-- Next, let&#39;s see if there may be any problem points in the regressors,  --&gt;
+&lt;!-- check for high leverage points (lof - dbscan pkg) --&gt;
+&lt;!-- ```{r} --&gt;
+&lt;!-- lof_score &lt;- training %&gt;% select(-one_of(c(&#34;donated07&#34;,&#34;volume&#34;))) %&gt;% --&gt;
+&lt;!--   lof(15) --&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- Random forest and variable importance measures --&gt;
+&lt;!-- ```{r} --&gt;
+&lt;!-- training$volume &lt;- NULL --&gt;
+&lt;!-- rf &lt;- randomForest(factor(donated07) ~ ., data=training, ntree=100, --&gt;
+&lt;!--                             keep.forest=TRUE, importance=TRUE) --&gt;
+&lt;!-- rf --&gt;
+&lt;!-- importance(rf) --&gt;
+&lt;!-- varImpPlot(rf) --&gt;
+&lt;!-- test &lt;- read.csv(&#34;../../data/test.csv&#34;) %&gt;% --&gt;
+&lt;!--   unique() --&gt;
+&lt;!-- row.names(test) &lt;- test[,1] --&gt;
+&lt;!-- test &lt;- test[-1] --&gt;
+&lt;!-- names(test) &lt;- c(&#34;last&#34;, &#34;number&#34;, &#34;volume&#34;, &#34;first&#34;) --&gt;
+&lt;!-- rf_pred &lt;- predict(rf, test) --&gt;
+&lt;!-- ``` --&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </description>

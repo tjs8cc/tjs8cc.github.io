@@ -39,7 +39,7 @@ Overview  Word Frequencies Load Measure for Measure from the Gutenberg Project:<
       <pubDate>Thu, 21 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/notes-on-the-elements-of-statistical-learning/</guid>
-      <description>Purpose The Bias-Variance Tradeoff Tree-based Methods   Purpose The Elements of Statistical Learning by Hastie et. al. is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)?</description>
+      <description>Purpose The Bias-Variance Tradeoff Note: Statistics vs Econometrics  Tree-based Methods   Purpose The Elements of Statistical Learning by Hastie et. al. is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)?</description>
     </item>
     
     <item>
@@ -49,8 +49,8 @@ Overview  Word Frequencies Load Measure for Measure from the Gutenberg Project:<
       
       <guid>/post/predicting-blood-donations-part-1/</guid>
       <description>Purpose This post shows some basic R usage, data exploration, and visualization methods. In a future post I’ll explore some quantitative methods.
-Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
-training_data_url &amp;lt;- &amp;quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&amp;quot; train_file &amp;lt;- &amp;quot;../../data/training.csv&amp;quot; if(!file.exists(train_file)){ download.</description>
+Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using the option method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website.
+training_data_url &amp;lt;- &amp;quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&amp;quot; train_file &amp;lt;- &amp;quot;.</description>
     </item>
     
   </channel>

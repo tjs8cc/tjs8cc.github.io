@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.42.1" />
+  <meta name="generator" content="Hugo 0.42.2" />
   <meta name="author" content="Tyler Smith">
 
   
@@ -18,8 +18,8 @@
     
   
   <meta name="description" content="Purpose This post shows some basic R usage, data exploration, and visualization methods. In a future post I’ll explore some quantitative methods.
-Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
-training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.">
+Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using the option method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website.
+training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/predicting-blood-donations-part-1/">
@@ -82,8 +82,8 @@ training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/
   <meta property="og:url" content="/post/predicting-blood-donations-part-1/">
   <meta property="og:title" content="Predicting Blood Donations: Part 1 | Tyler Smith">
   <meta property="og:description" content="Purpose This post shows some basic R usage, data exploration, and visualization methods. In a future post I’ll explore some quantitative methods.
-Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website
-training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;../../data/training.csv&quot; if(!file.exists(train_file)){ download.">
+Obtaining data in R R has a useful function called download.file, which I show here for future reference. Using the option method = curl, and maybe the extra option to pass additional arguments, I can download data from the DrivenData website.
+training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/ 9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot; train_file &lt;- &quot;.">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-06-21T00:00:00&#43;00:00">
@@ -234,7 +234,7 @@ training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    4 min read
   </span>
   
 
@@ -308,13 +308,14 @@ training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/
 
 <div id="purpose" class="section level2">
 <h2>Purpose</h2>
-<p>This post shows some basic R usage, data exploration, and visualization methods.
-In a future post I’ll explore some quantitative methods.</p>
+<p>This post shows some basic R usage, data exploration, and visualization
+methods. In a future post I’ll explore some quantitative methods.</p>
 <div id="obtaining-data-in-r" class="section level3">
 <h3>Obtaining data in R</h3>
 <p>R has a useful function called <code>download.file</code>, which I show here for future
-reference. Using <code>method = curl</code>, and maybe the <code>extra</code> option to pass additional
-arguments, I can download data from the DrivenData website</p>
+reference. Using the option <code>method = curl</code>, and maybe the <code>extra</code> option
+to pass additional arguments, I can download data from the DrivenData
+website.</p>
 <pre class="r"><code>training_data_url &lt;- &quot;https://s3.amazonaws.com/drivendata/data/2/public/
                       9db113a1-cdbe-4b1c-98c2-11590f124dd8.csv&quot;
 train_file &lt;- &quot;../../data/training.csv&quot;
@@ -328,9 +329,68 @@ test_file &lt;- &quot;../../data/test.csv&quot;
 if(!file.exists(test_file)){
   download.file(test_data_url, test_file, method = &quot;curl&quot;)
 }</code></pre>
-<p>Next, to look at the first few rows of data, I run:</p>
+<p>This is pretty small data set with only 5 variable: 4 independent
+variables and 1 binary dependent variable.</p>
 <pre class="r"><code>training &lt;- read.csv(&quot;../../data/training.csv&quot;, row.names = 1)
-names(training) &lt;- c(&quot;last&quot;, &quot;number&quot;, &quot;volume&quot;, &quot;first&quot;, &quot;donated07&quot;)
+kable(data.frame(Names = c(&quot;last&quot;, &quot;number&quot;, &quot;volume&quot;, &quot;first&quot;, &quot;donated07&quot;),
+                 Description = names(training))) %&gt;%
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;))</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Names
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+last
+</td>
+<td style="text-align:left;">
+Months.since.Last.Donation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+number
+</td>
+<td style="text-align:left;">
+Number.of.Donations
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+volume
+</td>
+<td style="text-align:left;">
+Total.Volume.Donated..c.c..
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+first
+</td>
+<td style="text-align:left;">
+Months.since.First.Donation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+donated07
+</td>
+<td style="text-align:left;">
+Made.Donation.in.March.2007
+</td>
+</tr>
+</tbody>
+</table>
+<p>Next, to look at the first few rows of data, I run:</p>
+<pre class="r"><code>names(training) &lt;- c(&quot;last&quot;, &quot;number&quot;, &quot;volume&quot;, &quot;first&quot;, &quot;donated07&quot;)
 kable(head(training)) %&gt;%
   kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;))</code></pre>
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
@@ -481,30 +541,278 @@ donated07
 <hr />
 <div id="read.csv-vs-read_csv" class="section level4">
 <h4><code>read.csv</code> vs <code>read_csv</code></h4>
-<p>I chose to use <code>read.csv</code> here since this data set came with row names. But in
-general, <code>read_csv</code> loads data faster and reads the data into a <code>tibble</code>, and
-<code>tibbles</code> do not have row names.<code>read.csv</code> reads the data into a <code>data.frame</code>.</p>
+<p>I chose to use <code>read.csv</code> here since this data set came with row names. But
+in general, <code>read_csv</code> loads data faster and reads the data into a <code>tibble</code>,
+and <code>tibbles</code> do not have row names.<code>read.csv</code> reads the data into a
+<code>data.frame</code>.</p>
 <hr />
 </div>
 </div>
 <div id="exploring-the-data-in-r" class="section level3">
 <h3>Exploring the data in R</h3>
-<p>As a first pass, let’s graph the histograms and scatter plots of the co-variates.
+<p>First lets check the summary statistics and correlations with outcome
+variable:</p>
+<!-- write a custome function for this -->
+<pre class="r"><code>cor_row &lt;- c(&quot;Corr.&quot;, round(cor(training$donated07, training), 4))
+training %&gt;%
+  summary() %&gt;%
+  tidy() %&gt;%
+  mutate(Freq = as.character(Freq)) %&gt;%
+  separate(Freq, c(&quot;statistic&quot;, &quot;value&quot;), &quot;:&quot;) %&gt;%
+  select(-one_of(&quot;Var1&quot;)) %&gt;%
+  rename(variable = Var2) %&gt;%
+  spread(variable, value) %&gt;%
+  rbind(cor_row) %&gt;%
+  kable() %&gt;%
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;))</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+statistic
+</th>
+<th style="text-align:left;">
+last
+</th>
+<th style="text-align:left;">
+number
+</th>
+<th style="text-align:left;">
+volume
+</th>
+<th style="text-align:left;">
+first
+</th>
+<th style="text-align:left;">
+donated07
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1st Qu.
+</td>
+<td style="text-align:left;">
+2.000
+</td>
+<td style="text-align:left;">
+2.000
+</td>
+<td style="text-align:left;">
+500
+</td>
+<td style="text-align:left;">
+16.00
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3rd Qu.
+</td>
+<td style="text-align:left;">
+14.000
+</td>
+<td style="text-align:left;">
+7.000
+</td>
+<td style="text-align:left;">
+1750
+</td>
+<td style="text-align:left;">
+49.25
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Max.
+</td>
+<td style="text-align:left;">
+74.000
+</td>
+<td style="text-align:left;">
+50.000
+</td>
+<td style="text-align:left;">
+12500
+</td>
+<td style="text-align:left;">
+98.00
+</td>
+<td style="text-align:left;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean
+</td>
+<td style="text-align:left;">
+9.439
+</td>
+<td style="text-align:left;">
+5.427
+</td>
+<td style="text-align:left;">
+1357
+</td>
+<td style="text-align:left;">
+34.05
+</td>
+<td style="text-align:left;">
+0.2396
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median
+</td>
+<td style="text-align:left;">
+7.000
+</td>
+<td style="text-align:left;">
+4.000
+</td>
+<td style="text-align:left;">
+1000
+</td>
+<td style="text-align:left;">
+28.00
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Min.
+</td>
+<td style="text-align:left;">
+0.000
+</td>
+<td style="text-align:left;">
+1.000
+</td>
+<td style="text-align:left;">
+250
+</td>
+<td style="text-align:left;">
+2.00
+</td>
+<td style="text-align:left;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Corr.
+</td>
+<td style="text-align:left;">
+-0.2612
+</td>
+<td style="text-align:left;">
+0.2206
+</td>
+<td style="text-align:left;">
+0.2206
+</td>
+<td style="text-align:left;">
+-0.0198
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>Next, let’s graph the histograms and scatter plots of the co-variates.
 A quick way to do this is to plot a scatter matrix. I’ll color by the outcome
 variable <code>donated07</code>.</p>
 <pre class="r"><code>ggpairs(training, aes(colour=factor(donated07)), 
         diag = list(continuous = wrap(&#39;barDiag&#39;, bins = 20)),
         columns = 1:(ncol(training)-1), progress = F) </code></pre>
-<p><img src="/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/scatter_matrix-1.png" width="672" /></p>
+<p><img src="/post/2018-06-21-predicting-blood-donations-part-1_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Notice that <code>number</code> and <code>volume</code> are perfectly correlated, which means that
 one of them needs to be dropped in any regression. The remaining co-variates
 do not look strongly correlated. It also looks like <code>first</code> might be top-coded
 at 100 months.</p>
 <p>People who were more likely to donate in 2007 seemed to donate more in
-general, either by frequency or volume. Their last donation also seemed to be more
-recent. The scatter matrix doesn’t reveal much else to my eye. In part 2, I’ll
-consider quantitative methods to estimate the strength of these qualitative
-observations.</p>
+general, either by frequency or volume. Their last donation also seemed to
+be more recent. The scatter matrix doesn’t reveal much else to my eye. In
+part 2, I’ll consider quantitative methods to estimate the strength of
+these qualitative observations.</p>
+<hr />
+</div>
+<div id="note-data-pre-processing" class="section level3">
+<h3>Note: data pre-processing</h3>
+<p>To remove duplicate rows, we can use the <code>unique</code> or <code>distinct</code>
+functions. <code>unique</code> returns all the unique rows of a data frame.
+<code>distinct</code> is an optimized version of <code>unique</code> from the <code>dplyr</code>
+package. <code>distnct</code> can also drop duplicate values based on
+any number of columns. Or to return the duplicated rows we could
+use <code>duplicated</code>:</p>
+<pre class="r"><code>training[duplicated(training), ]</code></pre>
+<div class="alert alert-warning">
+  <p>It’s easy to forget that row names aren’t considered when checking for
+duplicates. So, in this case, we would want to include an <code>id</code> column and
+then remove any duplcates. This is also a point in favor of using tibbles.</p>
+
+</div>
+
+<p>Removing missing values is simple in R too. We can use <code>complete.cases</code> or
+<code>na.omit</code>. <code>na.omit</code> returns a data frame without any rows containing
+<code>NA</code>. And <code>complete.cases</code> returns the indices of rows without <code>NA</code>, so
+it can be used to return rows with <code>NA</code>:</p>
+<pre class="r"><code>training[!complete.cases(training),]</code></pre>
+<pre><code>## [1] last      number    volume    first     donated07
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<p>Clearly, the <code>training</code> data set in this example doesn’t contain any missing
+values.</p>
+<p>Finally, it’s a good idea to check for any impossible values. Writing a
+custom function for a data set is a good way to document any changes you’ve
+made. For example, we know that every variable in this data set must be
+non-negative and <code>first &gt;= last</code>. So we could write the following function
+to remove any rows that violate these conditions:</p>
+<pre class="r"><code>clean &lt;- function(x) {
+  if (!is.data.frame(x)) stop(&#39;x must be a data.frame.&#39;)
+  x_cleaned &lt;- x %&gt;%
+    filter(first &gt;= last) %&gt;%
+    filter_all(any_vars(. &gt;= 0))
+  return(x_cleaned)
+}
+training_cleaned &lt;- clean(training)
+sum(!training_cleaned==training)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>We can see that all of the observations satisfy the conditions
+we put in <code>clean</code>.</p>
+<hr />
+<!-- Next, let's see if there may be any problem points in the regressors,  -->
+<!-- check for high leverage points (lof - dbscan pkg) -->
+<!-- ```{r} -->
+<!-- lof_score <- training %>% select(-one_of(c("donated07","volume"))) %>% -->
+<!--   lof(15) -->
+<!-- ``` -->
+<!-- Random forest and variable importance measures -->
+<!-- ```{r} -->
+<!-- training$volume <- NULL -->
+<!-- rf <- randomForest(factor(donated07) ~ ., data=training, ntree=100, -->
+<!--                             keep.forest=TRUE, importance=TRUE) -->
+<!-- rf -->
+<!-- importance(rf) -->
+<!-- varImpPlot(rf) -->
+<!-- test <- read.csv("../../data/test.csv") %>% -->
+<!--   unique() -->
+<!-- row.names(test) <- test[,1] -->
+<!-- test <- test[-1] -->
+<!-- names(test) <- c("last", "number", "volume", "first") -->
+<!-- rf_pred <- predict(rf, test) -->
+<!-- ``` -->
 </div>
 </div>
 

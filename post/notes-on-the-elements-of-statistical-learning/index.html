@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.42.1" />
+  <meta name="generator" content="Hugo 0.42.2" />
   <meta name="author" content="Tyler Smith">
 
   
@@ -17,7 +17,7 @@
       
     
   
-  <meta name="description" content="Purpose The Bias-Variance Tradeoff Tree-based Methods   Purpose The Elements of Statistical Learning by Hastie et. al. is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)?">
+  <meta name="description" content="Purpose The Bias-Variance Tradeoff Note: Statistics vs Econometrics  Tree-based Methods   Purpose The Elements of Statistical Learning by Hastie et. al. is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)?">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/notes-on-the-elements-of-statistical-learning/">
@@ -79,7 +79,7 @@
   <meta property="og:site_name" content="Tyler Smith">
   <meta property="og:url" content="/post/notes-on-the-elements-of-statistical-learning/">
   <meta property="og:title" content="Notes on The Elements of Statistical Learning | Tyler Smith">
-  <meta property="og:description" content="Purpose The Bias-Variance Tradeoff Tree-based Methods   Purpose The Elements of Statistical Learning by Hastie et. al. is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)?">
+  <meta property="og:description" content="Purpose The Bias-Variance Tradeoff Note: Statistics vs Econometrics  Tree-based Methods   Purpose The Elements of Statistical Learning by Hastie et. al. is the best resource I’ve found for understanding modern statistical and machine learning techniques. These techniques aim to answer problems of the following kind: what’s the best approximation to the conditional expectation function \(f(x) = E[Y|X]\)? Or more generally, what is our best guess for \(Y\) given what we know about \(X\)?">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-06-21T00:00:00&#43;00:00">
@@ -302,7 +302,9 @@
       <div id="TOC">
 <ul>
 <li><a href="#purpose">Purpose</a></li>
-<li><a href="#the-bias-variance-tradeoff">The Bias-Variance Tradeoff</a></li>
+<li><a href="#the-bias-variance-tradeoff">The Bias-Variance Tradeoff</a><ul>
+<li><a href="#note-statistics-vs-econometrics">Note: Statistics vs Econometrics</a></li>
+</ul></li>
 <li><a href="#tree-based-methods">Tree-based Methods</a></li>
 </ul>
 </div>
@@ -339,8 +341,25 @@ however be reduced. Roughly, the bias results from misspecifying the CEF and the
 variance of <span class="math inline">\(\hat{f}(x)\)</span> is due to sampling error, which can be reduced by
 increasing the sample size. So it would seem obvious that we should choose
 correctly specified models to get the best predictions, but what Hastie et.
-al. show is that often times we can do better by intentionally biasing our model
-if the variance is reduced enough in exchange.</p>
+al. show is that often times we can do better by intentionally biasing our
+model if the variance is reduced enough in exchange.</p>
+<hr />
+<div id="note-statistics-vs-econometrics" class="section level3">
+<h3>Note: Statistics vs Econometrics</h3>
+<p>Econometrics places a lot of emphasis on obtaining unbiased and consitent
+estimators (see Introduction to Econometrics by Stock and Watson).
+That doesn’t seem to be the case in statistics. I think this is due to
+different interests: prediction vs causality. It’s certainly more common
+to hear econometricians say they are more interested in causality. In
+the linear regression model <span class="math display">\[y = \beta x + \epsilon\]</span> an economist
+wants the best guess for <span class="math inline">\(\beta\)</span>, which would tell us what <span class="math inline">\(y\)</span> would be
+if we changed <span class="math inline">\(x\)</span>. More generally, an economist want the best guess for
+<span class="math inline">\(f(x+\delta)-f(x)\)</span>. In contrast, a statistician wants the best guess
+for <span class="math inline">\(y\)</span>. Although, the distinction doesn’t seem that significant. Maybe a
+better way of describing the difference is to say that economists care
+more about what we don’t know, i.e. what’s in the error term.</p>
+<hr />
+</div>
 </div>
 <div id="tree-based-methods" class="section level1">
 <h1>Tree-based Methods</h1>
