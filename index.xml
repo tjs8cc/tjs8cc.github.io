@@ -11,6 +11,30 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Predicting Blood Donations: Part 2</title>
+      <link>/post/predicting-blood-donations-part-2/</link>
+      <pubDate>Mon, 02 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/predicting-blood-donations-part-2/</guid>
+      <description>&lt;div id=&#34;purpose&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;This post shows some basic modeling methods in R. Specifically, I consider
+modeling blood donation data with a linear and logit model. These models
+are well established an easy to inerpret. In a future post I’ll explore some
+more flexible models that might improve prediction.&lt;/p&gt;
+&lt;div id=&#34;linear-regression-with-lm&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Linear regression with &lt;code&gt;lm&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;A linear model is the simplest a best understood method for modeling
+data, as well as a building block for more sophisticated methods. So
+I’ll start with it here, but note that it may not be appropriate for
+this data investigation since the outcome variable is a binary
+categorical variable.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Innovation at Universities</title>
       <link>/post/innovation-at-universities/</link>
       <pubDate>Fri, 29 Jun 2018 00:00:00 +0000</pubDate>
@@ -303,8 +327,10 @@ text(tree.carseats, pretty = 0)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;div id=&#34;purpose&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Purpose&lt;/h2&gt;
-&lt;p&gt;This post shows some basic R usage, data exploration, and visualization
-methods. In a future post I’ll explore some quantitative methods.&lt;/p&gt;
+&lt;p&gt;This post shows some basic R usage, data cleaning and exploration, and
+visualization methods. In
+&lt;a href=&#34;https://tjs8cc.github.io/post/predicting-blood-donations-part-2/&#34;&gt;Part2&lt;/a&gt;,
+I explore some quantitative methods.&lt;/p&gt;
 &lt;div id=&#34;obtaining-data-in-r&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Obtaining data in R&lt;/h3&gt;
 &lt;p&gt;R has a useful function called &lt;code&gt;download.file&lt;/code&gt;, which I show here for future

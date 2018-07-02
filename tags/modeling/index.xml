@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Modeling on Tyler Smith</title>
+    <link>/tags/modeling/</link>
+    <description>Recent content in Modeling on Tyler Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Mon, 02 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/modeling/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Predicting Blood Donations: Part 2</title>
+      <link>/post/predicting-blood-donations-part-2/</link>
+      <pubDate>Mon, 02 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/predicting-blood-donations-part-2/</guid>
+      <description>Purpose This post shows some basic modeling methods in R. Specifically, I consider modeling blood donation data with a linear and logit model. These models are well established an easy to inerpret. In a future post I’ll explore some more flexible models that might improve prediction.
+Linear regression with lm A linear model is the simplest a best understood method for modeling data, as well as a building block for more sophisticated methods.</description>
+    </item>
+    
+  </channel>
+</rss>

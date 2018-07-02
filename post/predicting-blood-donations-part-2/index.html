@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -15,10 +13,15 @@
   
   
   
-  <meta name="description" content="PhD Candidate in Economics">
+    
+      
+    
+  
+  <meta name="description" content="Purpose This post shows some basic modeling methods in R. Specifically, I consider modeling blood donation data with a linear and logit model. These models are well established an easy to inerpret. In a future post I’ll explore some more flexible models that might improve prediction.
+Linear regression with lm A linear model is the simplest a best understood method for modeling data, as well as a building block for more sophisticated methods.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/categories/statistics/">
+  <link rel="alternate" hreflang="en-us" href="/post/predicting-blood-donations-part-2/">
 
   
 
@@ -59,15 +62,15 @@
   
 
   
-  <link rel="alternate" href="/categories/statistics/index.xml" type="application/rss+xml" title="Tyler Smith">
-  <link rel="feed" href="/categories/statistics/index.xml" type="application/rss+xml" title="Tyler Smith">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Tyler Smith">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Tyler Smith">
   
 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/categories/statistics/">
+  <link rel="canonical" href="/post/predicting-blood-donations-part-2/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -75,18 +78,21 @@
   <meta property="twitter:creator" content="@tjs8cc">
   
   <meta property="og:site_name" content="Tyler Smith">
-  <meta property="og:url" content="/categories/statistics/">
-  <meta property="og:title" content="Statistics | Tyler Smith">
-  <meta property="og:description" content="PhD Candidate in Economics">
+  <meta property="og:url" content="/post/predicting-blood-donations-part-2/">
+  <meta property="og:title" content="Predicting Blood Donations: Part 2 | Tyler Smith">
+  <meta property="og:description" content="Purpose This post shows some basic modeling methods in R. Specifically, I consider modeling blood donation data with a linear and logit model. These models are well established an easy to inerpret. In a future post I’ll explore some more flexible models that might improve prediction.
+Linear regression with lm A linear model is the simplest a best understood method for modeling data, as well as a building block for more sophisticated methods.">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2018-07-02T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2018-07-02T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2018-07-02T00:00:00&#43;00:00">
   
 
   
   
 
-  <title>Statistics | Tyler Smith</title>
+  <title>Predicting Blood Donations: Part 2 | Tyler Smith</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
@@ -201,49 +207,141 @@
 </nav>
 
 
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
 
 
+  <div class="article-container">
+    <h1 itemprop="name">Predicting Blood Donations: Part 2</h1>
 
-<div class="universal-wrapper">
+    
 
-  <h1>Statistics</h1>
+<div class="article-metadata">
 
+  <span class="article-date">
+    
+    <time datetime="2018-07-02 00:00:00 &#43;0000 UTC" itemprop="datePublished dateModified">
+      Jul 2, 2018
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Tyler Smith">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
   
 
   
   
-  <div>
-    <h2><a href="/post/predicting-blood-donations-part-2/">Predicting Blood Donations: Part 2</a></h2>
-    <div class="article-style">
-      
-      Linear and logit model of blood donations.
-      
-    </div>
-  </div>
+
   
-  <div>
-    <h2><a href="/post/notes-on-the-elements-of-statistical-learning/">Notes on The Elements of Statistical Learning</a></h2>
-    <div class="article-style">
-      
-      My notes and some examples from <em>The Elements of Statistical Learning</em>
-      
-    </div>
-  </div>
   
-  <div>
-    <h2><a href="/post/predicting-blood-donations-part-1/">Predicting Blood Donations: Part 1</a></h2>
-    <div class="article-style">
-      
-      Exploring and visualizing blood donations data
-      
-    </div>
-  </div>
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/statistics/">Statistics</a
+    >
+    
+  </span>
+  
   
 
   
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Predicting%20Blood%20Donations%3a%20Part%202&amp;url=%2fpost%2fpredicting-blood-donations-part-2%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fpredicting-blood-donations-part-2%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fpredicting-blood-donations-part-2%2f&amp;title=Predicting%20Blood%20Donations%3a%20Part%202"
+         target="_blank" rel="noopener">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fpredicting-blood-donations-part-2%2f&amp;title=Predicting%20Blood%20Donations%3a%20Part%202"
+         target="_blank" rel="noopener">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Predicting%20Blood%20Donations%3a%20Part%202&amp;body=%2fpost%2fpredicting-blood-donations-part-2%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
 
+
+  
 
 </div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      <div id="purpose" class="section level2">
+<h2>Purpose</h2>
+<p>This post shows some basic modeling methods in R. Specifically, I consider
+modeling blood donation data with a linear and logit model. These models
+are well established an easy to inerpret. In a future post I’ll explore some
+more flexible models that might improve prediction.</p>
+<div id="linear-regression-with-lm" class="section level3">
+<h3>Linear regression with <code>lm</code></h3>
+<p>A linear model is the simplest a best understood method for modeling
+data, as well as a building block for more sophisticated methods. So
+I’ll start with it here, but note that it may not be appropriate for
+this data investigation since the outcome variable is a binary
+categorical variable.</p>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/modeling/">modeling</a>
+  
+</div>
+
+
+
+
+    
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
 <footer class="site-footer">
   <div class="container">
     <p class="powered-by">
@@ -327,6 +425,4 @@
 
   </body>
 </html>
-
-
 
