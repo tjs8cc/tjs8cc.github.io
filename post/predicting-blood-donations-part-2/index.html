@@ -17,8 +17,8 @@
       
     
   
-  <meta name="description" content="Purpose This post shows some basic modeling methods in R. Specifically, I consider modeling blood donation data with a linear and logit model. These models are well established an easy to inerpret. In a future post I’ll explore some more flexible models that might improve prediction.
-Linear regression with lm A linear model is the simplest a best understood method for modeling data, as well as a building block for more sophisticated methods.">
+  <meta name="description" content="Purpose This post shows some basic modeling methods in R. Specifically, I model blood donation data with a linear and logit model. These models are well established an easy to inerpret. In a future post I’ll explore some more flexible models that might improve prediction.
+Linear regression with lm A linear model is the simplest and best understood method for modeling data, as well as a building block for more sophisticated methods.">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/predicting-blood-donations-part-2/">
@@ -80,8 +80,8 @@ Linear regression with lm A linear model is the simplest a best understood metho
   <meta property="og:site_name" content="Tyler Smith">
   <meta property="og:url" content="/post/predicting-blood-donations-part-2/">
   <meta property="og:title" content="Predicting Blood Donations: Part 2 | Tyler Smith">
-  <meta property="og:description" content="Purpose This post shows some basic modeling methods in R. Specifically, I consider modeling blood donation data with a linear and logit model. These models are well established an easy to inerpret. In a future post I’ll explore some more flexible models that might improve prediction.
-Linear regression with lm A linear model is the simplest a best understood method for modeling data, as well as a building block for more sophisticated methods.">
+  <meta property="og:description" content="Purpose This post shows some basic modeling methods in R. Specifically, I model blood donation data with a linear and logit model. These models are well established an easy to inerpret. In a future post I’ll explore some more flexible models that might improve prediction.
+Linear regression with lm A linear model is the simplest and best understood method for modeling data, as well as a building block for more sophisticated methods.">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-07-02T00:00:00&#43;00:00">
@@ -232,7 +232,7 @@ Linear regression with lm A linear model is the simplest a best understood metho
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    5 min read
   </span>
   
 
@@ -301,19 +301,300 @@ Linear regression with lm A linear model is the simplest a best understood metho
 
 
     <div class="article-style" itemprop="articleBody">
-      <div id="purpose" class="section level2">
+      <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<div id="purpose" class="section level2">
 <h2>Purpose</h2>
-<p>This post shows some basic modeling methods in R. Specifically, I consider
-modeling blood donation data with a linear and logit model. These models
+<p>This post shows some basic modeling methods in R. Specifically, I model
+blood donation data with a linear and logit model. These models
 are well established an easy to inerpret. In a future post I’ll explore some
 more flexible models that might improve prediction.</p>
 <div id="linear-regression-with-lm" class="section level3">
 <h3>Linear regression with <code>lm</code></h3>
-<p>A linear model is the simplest a best understood method for modeling
+<p>A linear model is the simplest and best understood method for modeling
 data, as well as a building block for more sophisticated methods. So
 I’ll start with it here, but note that it may not be appropriate for
 this data investigation since the outcome variable is a binary
 categorical variable.</p>
+<hr />
+<p>The basic assumption is that the CEF is linear <span class="math display">\[f(x) = \beta x\]</span> In
+this context it is known as a <em>linear probability model</em>. The
+predicted value is thought of as the probability that <span class="math inline">\(y=1\)</span>. More
+precisely, it is supposed that there is a latent variable
+<span class="math inline">\(y^* = \beta x + \epsilon\)</span> that determines the observed value of
+<span class="math inline">\(y = 1\{y^* &gt; 0\}\)</span>. And we assume that
+<span class="math display">\[\begin{eqnarray} E(y|x) &amp;=&amp; E(1\{y^* &gt; 0\}|x) \\
+&amp;=&amp; P(y^* &gt; 0|x) \\
+&amp;=&amp; P(\epsilon &gt; -\beta x) \\ 
+&amp;=&amp; 1 - F(-\beta x) = F(\beta x) = \beta x\end{eqnarray}\]</span>
+This model may work well for some data points, but will violate the
+basic assumption for probabilities that <span class="math inline">\(0 \leq p \leq 1\)</span> for some
+values of <span class="math inline">\(x\)</span>. To remedy this problem we can assume a different
+CDF, usually either <span class="math inline">\(F(x) = \frac{1}{1+e^{-x}}\)</span> or <span class="math inline">\(F(x) = \Phi(x)\)</span>,
+which lead to the logit and probit model respectively. For now,
+we’ll consider the linear model, <span class="math inline">\(F(x) = x\)</span>.</p>
+<hr />
+<p>As mentioned in Part 1, we have to drop either <code>number</code> or <code>volume</code>
+because they are perfectly colinear. I’ve chosen to drop <code>volume</code>.
+The function for running linear regressions in R is <code>lm</code> from
+the <code>stats</code> package. <code>lm</code> returns an S3 object of class <code>lm</code>. Here’s
+how to use it:</p>
+<pre class="r"><code>donated_lm &lt;- lm(donated07 ~ . - volume, data = training)</code></pre>
+<p>The results from running this regression can be obtained with
+accessor functions like <code>coefficients</code> and <code>fitted.values</code>, but
+to get a quick view use <code>summary</code> and <code>anova</code></p>
+<pre class="r"><code>kable(xtable(summary(donated_lm)))</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+0.3115899
+</td>
+<td style="text-align:right;">
+0.0335642
+</td>
+<td style="text-align:right;">
+9.283405
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+last
+</td>
+<td style="text-align:right;">
+-0.0094864
+</td>
+<td style="text-align:right;">
+0.0022395
+</td>
+<td style="text-align:right;">
+-4.235970
+</td>
+<td style="text-align:right;">
+0.0000265
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+number
+</td>
+<td style="text-align:right;">
+0.0221996
+</td>
+<td style="text-align:right;">
+0.0040023
+</td>
+<td style="text-align:right;">
+5.546738
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+first
+</td>
+<td style="text-align:right;">
+-0.0030232
+</td>
+<td style="text-align:right;">
+0.0009528
+</td>
+<td style="text-align:right;">
+-3.172856
+</td>
+<td style="text-align:right;">
+0.0015905
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(vif(donated_lm), col.names = &quot;vif&quot;) %&gt;%
+  kable_styling(full_width = F)</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+vif
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+last
+</td>
+<td style="text-align:right;">
+1.189356
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+number
+</td>
+<td style="text-align:right;">
+1.872533
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+first
+</td>
+<td style="text-align:right;">
+1.890806
+</td>
+</tr>
+</tbody>
+</table>
+<p>Diagnostic information</p>
+<pre class="r"><code>par(mfrow=c(2,2))
+plot(donated_lm)</code></pre>
+<p><img src="/post/2018-07-02-predicting-blood-donations-part-2_files/figure-html/unnamed-chunk-5-1.png" width="960" />
+Really poor model.</p>
+<hr />
+</div>
+<div id="students-standards-and-hats" class="section level3">
+<h3>Students, standards, and hats</h3>
+<p>studentize vs standarized, hatvalues function.</p>
+<hr />
+<p>Heteroscedasticity library(sandwich) library(lmtest), summary(robust = T)</p>
+<pre class="r"><code>vc &lt;- vcovHC(donated_lm, type=&quot;HC1&quot;)
+coeftest(donated_lm, vcov = vc)</code></pre>
+<pre><code>## 
+## t test of coefficients:
+## 
+##                Estimate  Std. Error t value  Pr(&gt;|t|)    
+## (Intercept)  0.31158992  0.03708054  8.4031 3.457e-16 ***
+## last        -0.00948641  0.00234600 -4.0436 5.984e-05 ***
+## number       0.02219958  0.00423898  5.2370 2.297e-07 ***
+## first       -0.00302320  0.00086672 -3.4881 0.0005239 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>One way we can reduce the dimension of this model is to creat
+a new variable that’s a function of the original variables.
+Lets consider the rate at which someone gives blood by dividing
+<code>number</code> by <code>first</code>. This new variable is the number of
+donations per Month. With only one regressor we can plot the
+regression model to get a better sense of how the model is
+fitting the data.</p>
+<pre class="r"><code>donated_nm_lm &lt;- lm(donated07 ~ I(number/first), data = training)
+summary(donated_nm_lm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = donated07 ~ I(number/first), data = training)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.7633 -0.2287 -0.1689 -0.1316  0.8649 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      0.10947    0.02794   3.918 9.99e-05 ***
+## I(number/first)  0.65383    0.11025   5.930 5.23e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.415 on 574 degrees of freedom
+## Multiple R-squared:  0.05773,    Adjusted R-squared:  0.05609 
+## F-statistic: 35.17 on 1 and 574 DF,  p-value: 5.226e-09</code></pre>
+<pre class="r"><code>plot(training$number/training$first, training$donated07)
+abline(donated_nm_lm, lwd=3)</code></pre>
+<p><img src="/post/2018-07-02-predicting-blood-donations-part-2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Doesn’t look too bad; this model dosn’t give any non-sensical
+results for any of the observations in our trianing set.</p>
+</div>
+<div id="logistic-regression-with-glm" class="section level3">
+<h3>Logistic regression with <code>glm</code></h3>
+<pre class="r"><code>donated_glm &lt;- glm(donated07 ~ . - volume, data = training, 
+                   family = binomial)
+summary(donated_glm)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = donated07 ~ . - volume, family = binomial, data = training)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.5102  -0.8079  -0.5273  -0.2427   2.5545  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -0.585643   0.201818  -2.902  0.00371 ** 
+## last        -0.091026   0.018955  -4.802 1.57e-06 ***
+## number       0.129921   0.029102   4.464 8.03e-06 ***
+## first       -0.018797   0.006588  -2.853  0.00433 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 634.29  on 575  degrees of freedom
+## Residual deviance: 556.61  on 572  degrees of freedom
+## AIC: 564.61
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>Diagnostics</p>
+<pre class="r"><code>training &lt;- mutate(training, nm = number/first)
+donated_nm_glm &lt;- glm(donated07 ~ nm, data = training, 
+                          family = binomial)
+summary(donated_nm_glm)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = donated07 ~ nm, family = binomial, data = training)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.7988  -0.7060  -0.6177  -0.5673   1.9449  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  -1.8554     0.1711 -10.846  &lt; 2e-16 ***
+## nm            3.2522     0.6123   5.311 1.09e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 634.29  on 575  degrees of freedom
+## Residual deviance: 604.04  on 574  degrees of freedom
+## AIC: 608.04
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<pre class="r"><code>grid &lt;- data.frame(
+  nm = seq(min(training$nm), max(training$nm), length.out = 1000))
+plot(training$nm, training$donated07)
+lines(grid$nm, predict(donated_nm_glm, 
+                    newdata = grid, type = &quot;response&quot;))</code></pre>
+<p><img src="/post/2018-07-02-predicting-blood-donations-part-2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Formal comparison of linear and logit. AIC</p>
+<p>we’ve estmated several models. Let’s combine them with <code>stargazer</code></p>
 </div>
 </div>
 
@@ -420,6 +701,13 @@ categorical variable.</p>
       <script>hljs.initHighlightingOnLoad();</script>
     
 
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-tOav5w1OjvsSJzePRtt2uQPFwBoHt1VZcUq8l8nm5284LEKE9FSJBQryzMBzHxY5P0zRdNqEcpLIRVYFNgu1jw==" crossorigin="anonymous"></script>
     
     
 

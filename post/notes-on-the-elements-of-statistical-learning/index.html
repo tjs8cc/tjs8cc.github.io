@@ -367,18 +367,6 @@ more about what we don’t know, i.e. what’s in the error term.</p>
 partitioning its domain and approximating the function over each region with a
 constant equal to the average value of <span class="math inline">\(y\)</span> in each region. Deciding how to
 partition the domain results in different trees.</p>
-<pre class="r"><code>Carseats = data.frame(Carseats, High)
-tree.carseats = tree(High ~ ShelveLoc + Price, Carseats )
-summary(tree.carseats)</code></pre>
-<pre><code>## 
-## Classification tree:
-## tree(formula = High ~ ShelveLoc + Price, data = Carseats)
-## Number of terminal nodes:  10 
-## Residual mean deviance:  0.9325 = 363.7 / 390 
-## Misclassification error rate: 0.2325 = 93 / 400</code></pre>
-<pre class="r"><code>plot(tree.carseats, type = c(&quot;uniform&quot;))
-text(tree.carseats, pretty = 0)</code></pre>
-<p><img src="/post/2018-06-21-notes-on-the-elements-of-statistical-learning_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 
     </div>
