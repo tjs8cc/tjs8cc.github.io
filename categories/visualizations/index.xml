@@ -19,7 +19,7 @@
       
       <guid>/post/interactive-graphs-with-plotly-and-ggvis/</guid>
       <description>Purpose There are two very powerful packages in R to make interactive graphics: plotly and ggvis. In this post I put together some examples to explore their capabilities and limitations. And I consider some of the differences.
-plotly Plotly is an ‘interactive, browser-based charting library built on the open source JavaScript graphing library plotly.</description>
+plotly Plotly is an ‘interactive, browser-based charting library built on the open source JavaScript graphing library plotly.js’. Or more conceptually, plotly is a data visualization toolbox built from JSON objects, with interfaces to work with Scala, R, Python, or Matlab.</description>
     </item>
     
   </channel>
