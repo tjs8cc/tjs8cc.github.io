@@ -435,6 +435,21 @@ first
 </tr>
 </tbody>
 </table>
+<hr />
+</div>
+<div id="diagnostic-checks" class="section level3">
+<h3>Diagnostic checks</h3>
+<p>Potential problems with linear regression from Hastie
+et. al.</p>
+<ol style="list-style-type: decimal">
+<li>Non-linearity of the response-predictor relationships</li>
+<li>Correlation of error terms</li>
+<li>Non-constant variance of error terms</li>
+<li>Outliers</li>
+<li>High-leverage points</li>
+<li>Collinearity</li>
+</ol>
+<p>address each point</p>
 <pre class="r"><code>kable(vif(donated_lm), col.names = &quot;vif&quot;) %&gt;%
   kable_styling(full_width = F)</code></pre>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -498,6 +513,7 @@ coeftest(donated_lm, vcov = vc)</code></pre>
 ## first       -0.00302320  0.00086672 -3.4881 0.0005239 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<hr />
 <p>One way we can reduce the dimension of this model is to creat
 a new variable that’s a function of the original variables.
 Lets consider the rate at which someone gives blood by dividing
@@ -595,6 +611,8 @@ lines(grid$nm, predict(donated_nm_glm,
 <p><img src="/post/2018-07-02-predicting-blood-donations-part-2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Formal comparison of linear and logit. AIC</p>
 <p>we’ve estmated several models. Let’s combine them with <code>stargazer</code></p>
+<p>Future post that estimates blood donation with more
+complex models. kNN, random forest, and neural network.</p>
 </div>
 </div>
 
